@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: JohannesCarters Custom CSS and JavaScript
-Description:
+Description: Wordpress Plugin to easily add custom CSS and JavaScript code in a simple and organized way.
 Author: JohannesCarter
 Author URI: https://johanenscarter.de
 Version: 1.0.0
