@@ -3,4 +3,4 @@ Wordpress Plugin to easily add custom CSS and JavaScript code in a simple and or
 
 ## Wiki
 
- [Goto wiki](/wiki)
+ [Goto wiki](../../wiki)
