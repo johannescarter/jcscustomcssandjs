@@ -3,4 +3,4 @@ Wordpress Plugin to easily add custom CSS and JavaScript code in a simple and or
 
 ## Wiki
 
- [Goto wiki](../../wiki)
+ [Goto the plugins wiki.](https://github.com/johannescarter/jcscustomcssandjs/wiki)
