@@ -1,0 +1,5 @@
+# This prevents diret access of the config folder - just in case
+<Files ~ "\.(htaccess|php)$">
+order allow,deny
+deny from all
+</Files>
