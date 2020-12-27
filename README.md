@@ -12,3 +12,5 @@ version: 0.0.2
 ## Changelog
 ### 0.0.2
 * first test steetings page added
+* first time databse tables added
+* fixed a require error in main file

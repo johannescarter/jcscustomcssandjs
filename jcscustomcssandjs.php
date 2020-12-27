@@ -23,8 +23,6 @@ if ( ! defined( 'WPINC' ) ) {
  * == import plugin files ==
  */
 require plugin_dir_path( __FILE__ ) . '/config/config.php';
-require plugin_dir_path( __FILE__ ) . '/css/css_main.php';
-require plugin_dir_path( __FILE__ ) . '/css/css_mobile.php';
 if ( is_admin() ) {
 	require plugin_dir_path( __FILE__ ) . '/admin/admin_functions.php';
 }
