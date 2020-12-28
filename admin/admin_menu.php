@@ -3,6 +3,8 @@
  * This file conatains functions for the admin menu
  */
 
+add_action('admin_menu', 'jcs_cucj_setup_menu');
+
 /**
  * Adds a settings page in the backend for admins
  */
