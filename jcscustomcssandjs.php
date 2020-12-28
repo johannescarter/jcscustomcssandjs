@@ -25,6 +25,7 @@ if ( ! defined( 'WPINC' ) ) {
 require plugin_dir_path( __FILE__ ) . '/config/config.php';
 if ( is_admin() ) {
 	require plugin_dir_path( __FILE__ ) . '/admin/admin_functions.php';
+	require plugin_dir_path( __FILE__ ) . '/admin/admin_menu.php';
 }
 require plugin_dir_path( __FILE__ ) . '/public/public_functions.php';
 require plugin_dir_path( __FILE__ ) . '/public/public_shortcodes.php';
