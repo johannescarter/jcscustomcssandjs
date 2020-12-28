@@ -20,10 +20,10 @@ define('JCS_PLUGIN_HEX', '00');
  */
 
 // Legt den Titel des Adminmenüs fest
-define( 'JCS_CUCJ_ADMIN_MENU_TITLE', 'Öffnungszeiten Einstellungsseite' );
+define( 'JCS_CUCJ_ADMIN_MENU_TITLE', 'JCs Custom CSS & JS Settingspage' );
 
 // Legt das Label des Adminmenüs fest (wird in der Menüleiste angezeigt)
-define( 'JCS_CUCJ_ADMIN_MENU_LABEL', 'Öffnungszeiten' );
+define( 'JCS_CUCJ_ADMIN_MENU_LABEL', 'JCs Custom CSS & JS' );
 
 // Legt die Berechtigung fest, die ein Benutzer haben muss, damit ihm das Menü angezeigt wird
 // Übersicht aller Berechtigungen (capabilities) siehe https://wordpress.org/support/article/roles-and-capabilities/
