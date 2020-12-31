@@ -32,6 +32,18 @@ define( 'JCS_CUCJ_ADMIN_MENU_REQUIRED_CAPABILITY', 'edit_plugins' );
 // plugin option page slug
 define( 'JCS_CUCJ_ADMIN_MENU_PAGE_SLUG', 'jcs_cucj_admin_menu' );
 
+// plugin option pages
+define( 'JCS_CUCJ_ADMIN_SUBMENU_PAGES', [
+    [
+        'parent_slug' => JCS_CUCJ_ADMIN_MENU_PAGE_SLUG,
+        'page_title' => 'General Settings Page',
+        'menu_title' => 'General Settings',
+        'capability' => JCS_CUCJ_ADMIN_MENU_REQUIRED_CAPABILITY,
+        'menu_slug' => 'jcs_cucj_general_settings',
+        'function' => 'jcs_cucj_menu_page_general_settigns_callback',
+    ],
+]);
+
 // plugin option section callback function
 define( 'JCS_CUCJ_ADMIN_MENU_SECTION_CALLBACK', 'jcs_cucj_settings_section_callback' );
 

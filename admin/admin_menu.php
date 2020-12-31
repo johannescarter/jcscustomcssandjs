@@ -14,7 +14,6 @@ function jcs_cucj_setup_menu() {
 		JCS_CUCJ_ADMIN_MENU_LABEL,
 		JCS_CUCJ_ADMIN_MENU_REQUIRED_CAPABILITY,
 		JCS_CUCJ_ADMIN_MENU_PAGE_SLUG,
-		'jcs_cucj_render_menu'
 	);
 
 	foreach (JCS_CUCJ_WP_OPTIONS_SECTIONS as $section) {
@@ -49,6 +48,10 @@ function jcs_cucj_setup_menu() {
 }
 
 /**
+ * --- Settings sections and settings callback functions ---
+ */
+
+/**
  * callback function for setting sections
  */
 function jcs_cucj_settings_section_callback( $section ) {
@@ -80,9 +83,13 @@ function jcs_cucj_settings_callback( $setting ) {
 }
 
 /**
+ * --- Menu Page callback Functions ---
+ */
+
+/**
  * renders the settingspage for admins in the backend
  */
-function jcs_cucj_render_menu() {
+function jcs_cucj_menu_page_general_settigns_callback() {
 	?>
 		<div class="wrap">
 			<h1><?= JCS_CUCJ_ADMIN_MENU_TITLE; ?></h1>
