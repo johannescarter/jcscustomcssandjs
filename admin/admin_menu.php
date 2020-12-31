@@ -143,7 +143,7 @@ function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
 	<script type="text/javascript" >
 		function jcs_cucj_menu_render(content) {
 			console.log("4");
-			$("#jcs_cucj_admin_menu_view_sockel").html(content);
+			jQuery("#jcs_cucj_admin_menu_view_sockel").html(content);
 		}
 
 		function jcs_cucj_menu_get_view(viewName, viewData = null){
