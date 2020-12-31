@@ -186,8 +186,6 @@ function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
 	</script> <?php
 }
 
-<?php
-
 /**
  * render view css_files_list_files
  */
