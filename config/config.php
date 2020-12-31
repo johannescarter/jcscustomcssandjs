@@ -39,7 +39,7 @@ define( 'JCS_CUCJ_ADMIN_SUBMENU_PAGES', [
         'page_title' => 'General Settings Page',
         'menu_title' => 'General Settings',
         'capability' => JCS_CUCJ_ADMIN_MENU_REQUIRED_CAPABILITY,
-        'menu_slug' => 'jcs_cucj_general_settings',
+        'menu_slug' => JCS_CUCJ_ADMIN_MENU_PAGE_SLUG,
         'function' => 'jcs_cucj_menu_page_general_settigns_callback',
     ],
 ]);
