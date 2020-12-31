@@ -102,7 +102,7 @@ function jcs_cucj_settings_callback( $setting ) {
  */
 
 /**
- * renders the settingspage for admins in the backend
+ * callback function for the settingspage for admins in the backend
  */
 function jcs_cucj_menu_page_general_settigns_callback() {
 	?>
@@ -117,4 +117,87 @@ function jcs_cucj_menu_page_general_settigns_callback() {
 			</form>
 		</div>
 	<?php
+}
+
+/**
+ * callback function for the css files list page
+ */
+function jcs_cucj_menu_page_css_files_callback( $submenu_page ) {
+ 	?>
+		<div id="jcs_cucj_admin_menu_view_sockel">
+			<p>Hello, World!</p>
+			<button type="button" name="button" onclick="jcs_cucj_admin_menu_css_files_render_view_js('css_files_list_files', 'peter');">Klick mich!</button>
+		</div>
+	<?php
+}
+
+/**
+ * --- functions to render css files menu ---
+ */
+
+ /**
+  * adds a js function to select a view in css files menu
+  */
+add_action( 'admin_footer', 'jcs_cucj_admin_menu_css_files_render_view_js' ); // Write our JS below here
+function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
+	<script type="text/javascript" >
+		function jcs_cucj_menu_render(string content) {
+			$("#jcs_cucj_admin_menu_view_sockel").html(content);
+		}
+
+		function jcs_cucj_menu_get_view(string viewName, viewData = null){
+
+			string viewActionName = '';
+
+			switch (viewName) {
+				case 'css_files_list_files':
+					viewActionName = 'cs_cucj_render_view_css_files_list_files';
+					break;
+				case 'css_files_new_file':
+					viewActionName = 'cs_cucj_render_view_css_files_new_file';
+					break;
+				case 'css_files_edit_file':
+					viewActionName = 'cs_cucj_render_view_css_files_edit_file';
+					break;
+				case 'css_files_list_entries':
+					viewActionName = 'cs_cucj_render_view_css_files_list_entries';
+					break;
+				case 'css_files_new_entry':
+					viewActionName = 'cs_cucj_render_view_css_files_new_entry';
+					break;
+				case 'css_files_edit_entry':
+					viewActionName = 'cs_cucj_render_view_css_files_edit_entry';
+					break;
+				default:
+					// TODO default value
+					viewActionName = '';
+			}
+
+			var data = {
+				'action': viewActionName,
+				'view_data': viewData
+			};
+
+			// since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
+			jQuery.post(ajaxurl, data, function(response) {
+				alert('Got this from the server: ' + response);
+			});
+		});
+	</script> <?php
+}
+
+<?php
+
+/**
+ * render view css_files_list_files
+ */
+add_action( 'wp_ajax_cs_cucj_render_view_css_files_list_files', 'cs_cucj_render_view_css_files_list_files' );
+function cs_cucj_render_view_css_files_list_files() {
+	global $wpdb; // this is how you get access to the database
+
+	$view_data = serialize( $_POST['view_data'] );
+
+    echo $view_data;
+
+	wp_die(); // this is required to terminate immediately and return a proper response
 }
