@@ -42,6 +42,14 @@ define( 'JCS_CUCJ_ADMIN_SUBMENU_PAGES', [
         'menu_slug' => JCS_CUCJ_ADMIN_MENU_PAGE_SLUG,
         'function' => 'jcs_cucj_menu_page_general_settigns_callback',
     ],
+    [
+        'parent_slug' => JCS_CUCJ_ADMIN_MENU_PAGE_SLUG,
+        'page_title' => 'CSS Files List Page',
+        'menu_title' => 'CSS Files',
+        'capability' => JCS_CUCJ_ADMIN_MENU_REQUIRED_CAPABILITY,
+        'menu_slug' => 'jcs_cucj_submenu_page_css_files',
+        'function' => 'jcs_cucj_menu_page_general_settigns_callback',
+    ],
 ]);
 
 // plugin option section callback function
