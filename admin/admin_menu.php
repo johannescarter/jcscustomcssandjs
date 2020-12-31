@@ -188,7 +188,7 @@ function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
 				console.log("3");
 				jcs_cucj_menu_render(response);
 			});
-		});
+		}
 	</script> <?php
 }
 
