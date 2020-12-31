@@ -126,7 +126,7 @@ function jcs_cucj_menu_page_css_files_callback( $submenu_page ) {
  	?>
 		<div id="jcs_cucj_admin_menu_view_sockel">
 			<p>Hello, World!</p>
-			<button type="button" name="button" onclick="jcs_cucj_admin_menu_css_files_render_view_js('css_files_list_files', 'peter');">Klick mich!</button>
+			<button type="button" name="button" onclick="jcs_cucj_menu_get_view('css_files_list_files', 'peter');">Klick mich!</button>
 		</div>
 	<?php
 }
@@ -180,7 +180,7 @@ function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
 
 			// since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
 			jQuery.post(ajaxurl, data, function(response) {
-				alert('Got this from the server: ' + response);
+				jcs_cucj_menu_render(response);
 			});
 		});
 	</script> <?php
