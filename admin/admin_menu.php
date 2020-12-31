@@ -148,7 +148,7 @@ function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
 
 		function jcs_cucj_menu_get_view(viewName, viewData = null){
 
-			string viewActionName = '';
+			var viewActionName = '';
 
 			console.log("1");
 
