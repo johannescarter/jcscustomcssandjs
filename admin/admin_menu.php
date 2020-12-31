@@ -141,12 +141,12 @@ function jcs_cucj_menu_page_css_files_callback( $submenu_page ) {
 add_action( 'admin_footer', 'jcs_cucj_admin_menu_css_files_render_view_js' ); // Write our JS below here
 function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
 	<script type="text/javascript" >
-		function jcs_cucj_menu_render(string content) {
+		function jcs_cucj_menu_render(content) {
 			console.log("4");
 			$("#jcs_cucj_admin_menu_view_sockel").html(content);
 		}
 
-		function jcs_cucj_menu_get_view(string viewName, viewData = null){
+		function jcs_cucj_menu_get_view(viewName, viewData = null){
 
 			string viewActionName = '';
 
