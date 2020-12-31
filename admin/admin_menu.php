@@ -9,6 +9,7 @@ add_action('admin_menu', 'jcs_cucj_setup_menu');
  * Adds a settings page in the backend for admins
  */
 function jcs_cucj_setup_menu() {
+	// add menu parent page
 	add_menu_page(
 		JCS_CUCJ_ADMIN_MENU_TITLE,
 		JCS_CUCJ_ADMIN_MENU_LABEL,
@@ -16,6 +17,19 @@ function jcs_cucj_setup_menu() {
 		JCS_CUCJ_ADMIN_MENU_PAGE_SLUG,
 	);
 
+	// add subpages
+	foreach (JCS_CUCJ_ADMIN_SUBMENU_PAGES as $menu_page) {
+		add_submenu_page(
+			$menu_page['parent_slug'],
+			$menu_page['page_title'],
+			$menu_page['menu_title'],
+			$menu_page['capability'],
+			$menu_page['menu_slug'],
+			$menu_page['function'],
+		);
+	}
+
+	// add menu sections
 	foreach (JCS_CUCJ_WP_OPTIONS_SECTIONS as $section) {
 		add_settings_section(
 			$section['id'],
@@ -25,6 +39,7 @@ function jcs_cucj_setup_menu() {
 		);
 	}
 
+	//
 	foreach (JCS_CUCJ_WP_OPTIONS_SETTINGS as $setting) {
 		$tmp_section = ($setting['section'] != '')?$setting['section']:'default';
 		add_settings_field(
