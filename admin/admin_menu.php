@@ -142,12 +142,15 @@ add_action( 'admin_footer', 'jcs_cucj_admin_menu_css_files_render_view_js' ); //
 function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
 	<script type="text/javascript" >
 		function jcs_cucj_menu_render(string content) {
+			console.log("4");
 			$("#jcs_cucj_admin_menu_view_sockel").html(content);
 		}
 
 		function jcs_cucj_menu_get_view(string viewName, viewData = null){
 
 			string viewActionName = '';
+
+			console.log("1");
 
 			switch (viewName) {
 				case 'css_files_list_files':
@@ -173,6 +176,8 @@ function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
 					viewActionName = '';
 			}
 
+			console.log("2");
+
 			var data = {
 				'action': viewActionName,
 				'view_data': viewData
@@ -180,6 +185,7 @@ function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
 
 			// since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
 			jQuery.post(ajaxurl, data, function(response) {
+				console.log("3");
 				jcs_cucj_menu_render(response);
 			});
 		});
