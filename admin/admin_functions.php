@@ -12,14 +12,14 @@ if ( ! defined( 'WPINC' ) ) {
  * This function is called, when the plugin is activated.
  */
 function jcs_cucj_activate() {
-    echo "Hello, World!";
 
     global $wpdb;
 
     $charset_collate = $wpdb->get_charset_collate();
 
     // create db table for css sheets
-    $table_name = $wpdb->prefix . 'jcs_' . JCS_PLUGIN_HEX . '_css_sheets';
+    //$table_name = $wpdb->prefix . 'jcs_' . JCS_PLUGIN_HEX . '_css_sheets';
+    $table_name = $wpdb->prefix . 'jcs_cucj_css_sheets';
 
     $sql = "CREATE TABLE $table_name (
         id int NOT NULL AUTO_INCREMENT,
@@ -33,7 +33,7 @@ function jcs_cucj_activate() {
 	dbDelta( $sql );
 
     // create db table for css entries
-	$table_name = $wpdb->prefix . 'jcs_' . JCS_PLUGIN_HEX . '_css_entries';
+	$table_name = $wpdb->prefix . 'jcs_cucj_css_entries';
 
 	$sql = "CREATE TABLE $table_name (
 		id int(255) NOT NULL AUTO_INCREMENT,
@@ -47,7 +47,7 @@ function jcs_cucj_activate() {
 	dbDelta( $sql );
 
     // create db table for js files
-	$table_name = $wpdb->prefix . 'jcs_' . JCS_PLUGIN_HEX . '_js_files';
+	$table_name = $wpdb->prefix . 'jcs_cucj_js_files';
 
 	$sql = "CREATE TABLE $table_name (
 		id int(255) NOT NULL AUTO_INCREMENT,
