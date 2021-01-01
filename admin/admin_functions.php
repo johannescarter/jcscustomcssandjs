@@ -12,6 +12,8 @@ if ( ! defined( 'WPINC' ) ) {
  * This function is called, when the plugin is activated.
  */
 function jcs_cucj_activate() {
+    echo "Hello, World!";
+
     global $wpdb;
 
     $charset_collate = $wpdb->get_charset_collate();
@@ -63,11 +65,7 @@ function jcs_cucj_activate() {
  * This function is called, when the plugin is deactivated.
  */
 function jcs_cucj_deactivate() {
-    // drop custom database tables
-	global $wpdb;
-	$wpdb->query('DROP TABLE IF EXISTS ' . $wpdb->prefix . 'jcs_' . JCS_PLUGIN_HEX . '_css_sheets');
-	$wpdb->query('DROP TABLE IF EXISTS ' . $wpdb->prefix . 'jcs_' . JCS_PLUGIN_HEX . '_css_entries');
-    $wpdb->query('DROP TABLE IF EXISTS ' . $wpdb->prefix . 'jcs_' . JCS_PLUGIN_HEX . '_js_files');
+
 }
 
 ?>

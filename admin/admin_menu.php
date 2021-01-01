@@ -223,64 +223,56 @@ function cs_cucj_admin_menu_render_view() {
 }
 
 /**
- * Renders a css_files_list_files view and returns the view as a string.
+ * Renders a css_files_list_files view
  * @param viewData  mixed Array containing any view parameter
- * @return string
  */
 function cs_cucj_css_files_list_files_render_view( $viewData ) {
     ?>
         <div class="wrap">
-            <h1>List of all CSS files</h1>
+            <h1 class="jcs_cucj_view-title">List of all CSS files</h1>
+            <div class="jcs_cucj_list">
+                <div class="jcs_cucj_list-item">
+
+                </div>
+            </div>
         </div>
     <?php
 }
 
 /**
- * Renders a css_files_new_file view and returns the view as a string.
+ * Renders a css_files_new_file view
  * @param viewData  mixed Array containing any view parameter
- * @return string
  */
 function cs_cucj_css_files_new_file_render_view( $viewData ) {
-    $view = '';
-
-    $view .=
-        '<div class="wrap">
+    ?>
+        <div class="wrap">
             <h1>Create new CSS file</h1>
-        </div>';
-
-    echo $view;
+        </div>
+    <?php
 }
 
 /**
- * Renders a css_files_edit_file view and returns the view as a string.
+ * Renders a css_files_edit_file view
  * @param viewData  mixed Array containing any view parameter
- * @return string
  */
 function cs_cucj_css_files_edit_file_render_view( $viewData ) {
-    $view = '';
-
-    $view .=
-        '<div class="wrap">
+    ?>
+        <div class="wrap">
             <h1>Edit CSS file</h1>
-        </div>';
-
-    echo $view;
+        </div>
+    <?php
 }
 
 /**
- * Renders a css_files_list_entries view and returns the view as a string.
+ * Renders a css_files_list_entries view
  * @param viewData  mixed Array containing any view parameter
- * @return string
  */
 function cs_cucj_css_files_list_entries_render_view( $viewData ) {
-    $view = '';
-
-    $view .=
-        '<div class="wrap">
+    ?>
+        <div class="wrap">
             <h1>List of all Entries of the CSS file</h1>
-        </div>';
-
-    echo $view;
+        </div>
+    <?php
 }
 
 /**
@@ -289,14 +281,11 @@ function cs_cucj_css_files_list_entries_render_view( $viewData ) {
  * @return string
  */
 function cs_cucj_css_files_new_entry_render_view( $viewData ) {
-    $view = '';
-
-    $view .=
-        '<div class="wrap">
+    ?>
+        <div class="wrap">
             <h1>Create CSS entry</h1>
-        </div>';
-
-    echo $view;
+        </div>
+    <?php
 }
 
 /**
@@ -305,12 +294,9 @@ function cs_cucj_css_files_new_entry_render_view( $viewData ) {
  * @return string
  */
 function cs_cucj_css_files_edit_entry_render_view( $viewData ) {
-    $view = '';
-
-    $view .=
-        '<div class="wrap">
+    ?>
+        <div class="wrap">
             <h1>Edit CSS entry</h1>
-        </div>';
-
-    echo $view;
+        </div>
+    <?php
 }
