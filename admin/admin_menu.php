@@ -17,7 +17,7 @@
  */
 function jcs_cucj_echo_button( $text, $name, $onclick = '', $href = '', $disabled = false ) {
     ?>
-        <button class="button button-primary" type="button" name="<?= $name; ?>"<?= ($onclick != '')?' oncklick="'.$onclick.'"':''; ?><?= ($disabled)?' disabled':''; ?>><?= $text; ?></button>
+        <button class="button button-primary" type="button" name="<?= $name; ?>"<?= ($onclick != '')?' onclick="'.$onclick.'"':''; ?><?= ($disabled)?' disabled':''; ?>><?= $text; ?></button>
     <?php
 }
 
