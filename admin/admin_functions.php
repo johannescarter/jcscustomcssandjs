@@ -24,7 +24,7 @@ function jcs_cucj_activate() {
         id int(255) NOT NULL AUTO_INCREMENT,
         name longtext NOT NULL,
         description longtext,
-        media_query vlongtext,
+        media_query longtext,
         PRIMARY KEY (id)
     ) $charset_collate;";
 
