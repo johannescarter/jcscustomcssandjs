@@ -23,9 +23,9 @@ function jcs_cucj_activate() {
 
     $sql = "CREATE TABLE $table_name (
         id int NOT NULL AUTO_INCREMENT,
-		name varchar(1024) NOT NULL,
-        description varchar(8192)
-		media_query varchar(8192),
+		name varchar(1023) NOT NULL,
+        description varchar(8191)
+		media_query varchar(8191),
 		PRIMARY KEY  (id)
     ) $charset_collate;";
 
@@ -37,9 +37,9 @@ function jcs_cucj_activate() {
 
 	$sql = "CREATE TABLE $table_name (
 		id int(255) NOT NULL AUTO_INCREMENT,
-		selector varchar(8192) NOT NULL,
-        description varchar(8192)
-		custom_code varchar(65535),
+		selector varchar(8191) NOT NULL,
+        description varchar(8191)
+		custom_code varchar(65534),
 		PRIMARY KEY  (id)
     ) $charset_collate;";
 
@@ -51,9 +51,9 @@ function jcs_cucj_activate() {
 
 	$sql = "CREATE TABLE $table_name (
 		id int(255) NOT NULL AUTO_INCREMENT,
-		name varchar(1024) NOT NULL,
-        description varchar(8192)
-		custom_code varchar(65535),
+		name varchar(1023) NOT NULL,
+        description varchar(8191)
+		custom_code varchar(65534),
 		PRIMARY KEY  (id)
     ) $charset_collate;";
 
