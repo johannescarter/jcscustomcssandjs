@@ -18,7 +18,6 @@ function jcs_cucj_activate() {
     $charset_collate = $wpdb->get_charset_collate();
 
     // create db table for css sheets
-    //$table_name = $wpdb->prefix . 'jcs_' . JCS_PLUGIN_HEX . '_css_sheets';
     $table_name = $wpdb->prefix . 'jcs_cucj_css_sheets';
 
     $sql = "CREATE TABLE $table_name (
@@ -26,7 +25,7 @@ function jcs_cucj_activate() {
         name varchar(1023) NOT NULL,
         description varchar(8191),
         media_query varchar(8191),
-        PRIMARY KEY  (id)
+        PRIMARY KEY (id)
     ) $charset_collate;";
 
     require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
@@ -40,7 +39,7 @@ function jcs_cucj_activate() {
         selector varchar(8191) NOT NULL,
         description varchar(8191),
         custom_code varchar(65535),
-        PRIMARY KEY  (id)
+        PRIMARY KEY (id)
     ) $charset_collate;";
 
     require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
@@ -54,7 +53,7 @@ function jcs_cucj_activate() {
         name varchar(1023) NOT NULL,
         description varchar(8191),
         custom_code varchar(65535),
-        PRIMARY KEY  (id)
+        PRIMARY KEY (id)
     ) $charset_collate;";
 
     require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
@@ -66,7 +65,11 @@ function jcs_cucj_activate() {
  * This function is called, when the plugin is deactivated.
  */
 function jcs_cucj_deactivate() {
-
+    // drop custom database tables
+    global $wpdb;
+    $wpdb->query('DROP TABLE IF EXISTS ' . $wpdb->prefix . 'jcs_' . JCS_PLUGIN_HEX . '_css_sheets');
+    $wpdb->query('DROP TABLE IF EXISTS ' . $wpdb->prefix . 'jcs_' . JCS_PLUGIN_HEX . '_css_entries');
+    $wpdb->query('DROP TABLE IF EXISTS ' . $wpdb->prefix . 'jcs_' . JCS_PLUGIN_HEX . '_js_files');
 }
 
 ?>
