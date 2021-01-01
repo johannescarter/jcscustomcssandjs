@@ -65,11 +65,7 @@ function jcs_cucj_activate() {
  * This function is called, when the plugin is deactivated.
  */
 function jcs_cucj_deactivate() {
-    // drop custom database tables
-    global $wpdb;
-    $wpdb->query('DROP TABLE IF EXISTS ' . $wpdb->prefix . 'jcs_cucj_css_sheets');
-    $wpdb->query('DROP TABLE IF EXISTS ' . $wpdb->prefix . 'jcs_cucj_css_entries');
-    $wpdb->query('DROP TABLE IF EXISTS ' . $wpdb->prefix . 'jcs_cucj_js_files');
+    
 }
 
 ?>
