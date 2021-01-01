@@ -126,7 +126,12 @@ function jcs_cucj_menu_page_css_files_callback( $submenu_page ) {
  	?>
 		<div id="jcs_cucj_admin_menu_view_sockel">
 			<p>Hello, World!</p>
-			<button type="button" name="button" onclick="jcs_cucj_menu_get_view('css_files_list_files', 'peter');">Klick mich!</button>
+			<button type="button" name="button" onclick="jcs_cucj_menu_get_view('css_files_list_files', 'peter');">files list</button>
+            <button type="button" name="button" onclick="jcs_cucj_menu_get_view('css_files_new_file', 'peter');">new file</button>
+            <button type="button" name="button" onclick="jcs_cucj_menu_get_view('css_files_edit_file', 'peter');">edit file</button>
+            <button type="button" name="button" onclick="jcs_cucj_menu_get_view('css_files_list_entries', 'peter');">entries list</button>
+            <button type="button" name="button" onclick="jcs_cucj_menu_get_view('css_files_new_entry', 'peter');">new entry</button>
+            <button type="button" name="button" onclick="jcs_cucj_menu_get_view('css_files_edit_entry', 'peter');">edit entry</button>
 		</div>
 	<?php
 }
@@ -142,50 +147,18 @@ add_action( 'admin_footer', 'jcs_cucj_admin_menu_css_files_render_view_js' ); //
 function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
 	<script type="text/javascript" >
 		function jcs_cucj_menu_render(content) {
-			console.log("4");
 			jQuery("#jcs_cucj_admin_menu_view_sockel").html(content);
 		}
 
 		function jcs_cucj_menu_get_view(viewName, viewData = null){
-
-			var viewActionName = '';
-
-			console.log("1");
-
-			switch (viewName) {
-				case 'css_files_list_files':
-					viewActionName = 'cs_cucj_render_view_css_files_list_files';
-					break;
-				case 'css_files_new_file':
-					viewActionName = 'cs_cucj_render_view_css_files_new_file';
-					break;
-				case 'css_files_edit_file':
-					viewActionName = 'cs_cucj_render_view_css_files_edit_file';
-					break;
-				case 'css_files_list_entries':
-					viewActionName = 'cs_cucj_render_view_css_files_list_entries';
-					break;
-				case 'css_files_new_entry':
-					viewActionName = 'cs_cucj_render_view_css_files_new_entry';
-					break;
-				case 'css_files_edit_entry':
-					viewActionName = 'cs_cucj_render_view_css_files_edit_entry';
-					break;
-				default:
-					// TODO default value
-					viewActionName = '';
-			}
-
-			console.log("2");
-
 			var data = {
-				'action': viewActionName,
+				'action': 'cs_cucj_admin_menu_render_view',
+                'viewName': viewName,
 				'view_data': viewData
 			};
 
 			// since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
 			jQuery.post(ajaxurl, data, function(response) {
-				console.log("3");
 				jcs_cucj_menu_render(response);
 			});
 		}
@@ -193,15 +166,131 @@ function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
 }
 
 /**
- * render view css_files_list_files
+ * ajax response function, calls the functions to render a certain view
  */
-add_action( 'wp_ajax_cs_cucj_render_view_css_files_list_files', 'cs_cucj_render_view_css_files_list_files' );
-function cs_cucj_render_view_css_files_list_files() {
-	global $wpdb; // this is how you get access to the database
+add_action( 'wp_ajax_cs_cucj_admin_menu_render_view', 'cs_cucj_admin_menu_render_view' );
+function cs_cucj_admin_menu_render_view() {
+	global $wpdb;
 
-	$view_data = serialize( $_POST['view_data'] );
-
-    echo $view_data;
+    switch ($_POST['viewName']) {
+        case 'css_files_list_files':
+            cs_cucj_css_files_list_files_render_view($_POST['viewData']);
+            break;
+        case 'css_files_new_file':
+            cs_cucj_css_files_new_file_render_view($_POST['viewData']);
+            break;
+        case 'css_files_edit_file':
+            cs_cucj_css_files_edit_file_render_view($_POST['viewData']);
+            break;
+        case 'css_files_list_entries':
+            cs_cucj_css_files_list_entries_render_view($_POST['viewData']);
+            break;
+        case 'css_files_new_entry':
+            cs_cucj_css_files_new_entry_render_view($_POST['viewData']);
+            break;
+        case 'css_files_edit_entry':
+            cs_cucj_css_files_edit_entry_render_view($_POST['viewData']);
+            break;
+        default:
+            // TODO echo error msg
+            break;
+    }
 
 	wp_die(); // this is required to terminate immediately and return a proper response
+}
+
+/**
+ * Renders a css_files_list_files view and returns the view as a string.
+ * @param viewData  mixed Array containing any view parameter
+ * @return string
+ */
+function cs_cucj_css_files_list_files_render_view( $viewData ) {
+    $view = '';
+
+    $view .=
+        '<div class="wrap">
+            <h1>List of all CSS files</h1>
+        </div>';
+
+    echo $view;
+}
+
+/**
+ * Renders a css_files_new_file view and returns the view as a string.
+ * @param viewData  mixed Array containing any view parameter
+ * @return string
+ */
+function cs_cucj_css_files_new_file_render_view( $viewData ) {
+    $view = '';
+
+    $view .=
+        '<div class="wrap">
+            <h1>Create new CSS file</h1>
+        </div>';
+
+    echo $view;
+}
+
+/**
+ * Renders a css_files_edit_file view and returns the view as a string.
+ * @param viewData  mixed Array containing any view parameter
+ * @return string
+ */
+function cs_cucj_css_files_edit_file_render_view( $viewData ) {
+    $view = '';
+
+    $view .=
+        '<div class="wrap">
+            <h1>Edit CSS file</h1>
+        </div>';
+
+    echo $view;
+}
+
+/**
+ * Renders a css_files_list_entries view and returns the view as a string.
+ * @param viewData  mixed Array containing any view parameter
+ * @return string
+ */
+function cs_cucj_css_files_list_entries_render_view( $viewData ) {
+    $view = '';
+
+    $view .=
+        '<div class="wrap">
+            <h1>List of all Entries of the CSS file</h1>
+        </div>';
+
+    echo $view;
+}
+
+/**
+ * Renders a css_files_new_entry view and returns the view as a string.
+ * @param viewData  mixed Array containing any view parameter
+ * @return string
+ */
+function cs_cucj_css_files_new_entry_render_view( $viewData ) {
+    $view = '';
+
+    $view .=
+        '<div class="wrap">
+            <h1>Create CSS entry</h1>
+        </div>';
+
+    echo $view;
+}
+
+/**
+ * Renders a css_files_edit_entry view and returns the view as a string.
+ * @param viewData  mixed Array containing any view parameter
+ * @return string
+ */
+function cs_cucj_css_files_edit_entry_render_view( $viewData ) {
+    $view = '';
+
+    $view .=
+        '<div class="wrap">
+            <h1>Edit CSS entry</h1>
+        </div>';
+
+    echo $view;
 }
