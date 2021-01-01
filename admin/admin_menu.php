@@ -3,6 +3,29 @@
  * This file conatains functions for the admin menu
  */
 
+/**
+ * == Helper functions ==
+ */
+
+/**
+ * echos a button with the parameters.
+ * @param text  text to be displayed on the button
+ * @param name  name of the butzton (identifier to js)
+ * @param onclick   js that is triggert if the button gets clicked
+ * @param href  link for the button
+ * @param disabled  set true to display the button as disabled in the frontend
+ */
+function jcs_cucj_echo_button( $text, $name, $onclick = '', $href = '', $disabled = false ) {
+    ?>
+        <button class="button button-primary" type="button" name="<?= $name; ?>"<?= ($onclick != '')?' oncklick="'.$onclick.'"':''; ?><?= ($disabled)?' disabled':''; ?>><?= $text; ?></button>
+    <?php
+}
+
+
+/**
+ * == Menu functions ==
+ */
+
 add_action('admin_menu', 'jcs_cucj_setup_menu');
 
 /**
@@ -126,12 +149,12 @@ function jcs_cucj_menu_page_css_files_callback( $submenu_page ) {
  	?>
 		<div id="jcs_cucj_admin_menu_view_sockel">
 			<p>Hello, World!</p>
-			<button type="button" name="button" onclick="jcs_cucj_menu_get_view('css_files_list_files', 'peter');">files list</button>
-            <button type="button" name="button" onclick="jcs_cucj_menu_get_view('css_files_new_file', 'peter');">new file</button>
-            <button type="button" name="button" onclick="jcs_cucj_menu_get_view('css_files_edit_file', 'peter');">edit file</button>
-            <button type="button" name="button" onclick="jcs_cucj_menu_get_view('css_files_list_entries', 'peter');">entries list</button>
-            <button type="button" name="button" onclick="jcs_cucj_menu_get_view('css_files_new_entry', 'peter');">new entry</button>
-            <button type="button" name="button" onclick="jcs_cucj_menu_get_view('css_files_edit_entry', 'peter');">edit entry</button>
+			<?php jcs_cucj_echo_button( 'files list', 'button', "jcs_cucj_menu_get_view('css_files_list_files', 'peter');" ); ?>
+            <?php jcs_cucj_echo_button( 'new file', 'button', "jcs_cucj_menu_get_view('css_files_new_file', 'peter');" ); ?>
+            <?php jcs_cucj_echo_button( 'edit file', 'button', "jcs_cucj_menu_get_view('css_files_edit_file', 'peter');" ); ?>
+            <?php jcs_cucj_echo_button( 'entries list', 'button', "jcs_cucj_menu_get_view('css_files_list_entries', 'peter');" ); ?>
+            <?php jcs_cucj_echo_button( 'new entry', 'button', "jcs_cucj_menu_get_view('css_files_new_entry', 'peter');" ); ?>
+            <?php jcs_cucj_echo_button( 'edit entry', 'button', "jcs_cucj_menu_get_view('css_files_edit_entry', 'peter');" ); ?>
 		</div>
 	<?php
 }
