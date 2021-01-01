@@ -24,7 +24,7 @@ function jcs_cucj_activate() {
         id int(255) NOT NULL AUTO_INCREMENT,
         name varchar(1023) NOT NULL,
         description varchar(8191),
-        PRIMARY KEY (id)
+        PRIMARY KEY  (id)
     ) $charset_collate;";
 
     require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
@@ -35,10 +35,12 @@ function jcs_cucj_activate() {
 
     $sql = "CREATE TABLE $table_name (
         id int(255) NOT NULL AUTO_INCREMENT,
-        selector varchar(8190) NOT NULL,
+        selector varchar(8191) NOT NULL,
         description varchar(8191),
-        PRIMARY KEY (id)
+        PRIMARY KEY  (id)
     ) $charset_collate;";
+
+        die(serialize(dbDelta( $sql )));
 
     require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
     dbDelta( $sql );
@@ -50,7 +52,7 @@ function jcs_cucj_activate() {
         id int(255) NOT NULL AUTO_INCREMENT,
         name varchar(1023) NOT NULL,
         description varchar(8191),
-        PRIMARY KEY (id)
+        PRIMARY KEY  (id)
     ) $charset_collate;";
 
     require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
