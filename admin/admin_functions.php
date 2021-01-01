@@ -23,6 +23,7 @@ function jcs_cucj_activate() {
     $sql = "CREATE TABLE $table_name (
         id int(255) NOT NULL AUTO_INCREMENT,
         name varchar(1023) NOT NULL,
+        description varchar(8191),
         PRIMARY KEY (id)
     ) $charset_collate;";
 
@@ -35,6 +36,7 @@ function jcs_cucj_activate() {
     $sql = "CREATE TABLE $table_name (
         id int(255) NOT NULL AUTO_INCREMENT,
         selector varchar(8191) NOT NULL,
+        description varchar(8191),
         PRIMARY KEY (id)
     ) $charset_collate;";
 
@@ -47,6 +49,7 @@ function jcs_cucj_activate() {
     $sql = "CREATE TABLE $table_name (
         id int(255) NOT NULL AUTO_INCREMENT,
         name varchar(1023) NOT NULL,
+        description varchar(8191),
         PRIMARY KEY (id)
     ) $charset_collate;";
 
