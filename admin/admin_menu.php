@@ -10,7 +10,7 @@
 /**
  * echos a button with the parameters.
  * @param text  text to be displayed on the button
- * @param name  name of the butzton (identifier to js)
+ * @param name  name of the button (identifier to js)
  * @param onclick   js that is triggert if the button gets clicked
  * @param href  link for the button
  * @param disabled  set true to display the button as disabled in the frontend
@@ -228,14 +228,11 @@ function cs_cucj_admin_menu_render_view() {
  * @return string
  */
 function cs_cucj_css_files_list_files_render_view( $viewData ) {
-    $view = '';
-
-    $view .=
-        '<div class="wrap">
+    ?>
+        <div class="wrap">
             <h1>List of all CSS files</h1>
-        </div>';
-
-    echo $view;
+        </div>
+    <?php
 }
 
 /**
