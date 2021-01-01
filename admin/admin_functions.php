@@ -42,7 +42,7 @@ function jcs_cucj_activate() {
         PRIMARY KEY (id)
     ) $charset_collate;";
 
-    require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+    //require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
     dbDelta( $sql );
 
     // create db table for js files
@@ -56,7 +56,7 @@ function jcs_cucj_activate() {
         PRIMARY KEY (id)
     ) $charset_collate;";
 
-    require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+    //require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
     dbDelta( $sql );
 
 }
