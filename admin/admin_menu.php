@@ -185,6 +185,10 @@ function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
 	<script type="text/javascript" >
         var id = null;
 
+        /**
+         * == css files ==
+         */
+
         function jcs_cucj_create_css_file_and_close() {
             var formData = jQuery('form').serializeArray();
 
@@ -240,6 +244,33 @@ function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
 
 			jQuery.post(ajaxurl, data, null);
         }
+
+        /**
+         * == css entries ==
+         */
+
+        /**
+         * create css entry and switch to entry list view
+         */
+        function jcs_cucj_create_css_entry_and_close( fileId ) {
+            var formData = jQuery('form').serializeArray();
+
+            var data = {
+                'action': 'jcs_cucj_create_css_entry',
+                'selector': formData[0].value,
+                'comment': formData[1].value,
+                'custom_code': formData[2].value,
+                'stylesheet_id': fileId
+            };
+
+            jQuery.post(ajaxurl, data, function(response) {
+                jcs_cucj_menu_get_view('css_files_list_entries');
+            });
+        }
+
+        /**
+         * == views ==
+         */
 
 		function jcs_cucj_menu_render(content) {
 			jQuery("#jcs_cucj_admin_menu_view_sockel").html(content);
@@ -399,6 +430,34 @@ function jcs_cucj_update_css_file() {
             }
         }
         $query = "UPDATE " . $wpdb->prefix . "jcs_cucj_css_sheets SET " . $update . " WHERE id LIKE " . $_POST[ 'id' ] . ";";
+        $wpdb->get_results( $query );
+    }
+
+    wp_die(); // this is required to terminate immediately and return a proper response
+}
+
+/**
+ * ajax function to insert a new css entry into the database
+ */
+add_action( 'wp_ajax_jcs_cucj_create_css_entry', 'jcs_cucj_create_css_entry' );
+function jcs_cucj_create_css_entry() {
+    global $wpdb;
+
+    if ( !current_user_can( 'manage_options' ) ) {
+        echo "Access denied!";
+        wp_die(); // this is required to terminate immediately and return a proper response
+    }
+
+    if( !empty( $_POST[ 'stylesheet_id' ] ) && !empty( $_POST[ 'selector' ] ) ) {
+        $query = "INSERT INTO " . $wpdb->prefix . "jcs_cucj_css_entries
+                  (stylesheet_id, selector, comment, custom_code)
+                  VALUES
+                  (
+                      '" . esc_sql( $_POST[ 'stylesheet_id' ] ) . "',
+                      '" . esc_sql( $_POST[ 'selector' ] ) . "',
+                      '" . esc_sql( $_POST[ 'comment' ] ) . "',
+                      '" . esc_sql( $_POST[ 'custom_code' ] ) . "'
+                  );";
         $wpdb->get_results( $query );
     }
 
@@ -748,12 +807,12 @@ function cs_cucj_css_files_new_entry_render_view( $fileId ) {
                             <?php jcs_cucj_echo_button(
                                 'Save and close',
                                 'submit',
-                                "jcs_cucj_create_css_file_and_close();"
+                                "jcs_cucj_create_css_entry_and_close();"
                             );
                             jcs_cucj_echo_button(
                                 'Cancel',
                                 'cancel',
-                                "jcs_cucj_menu_get_view('css_files_list_files');"
+                                "jcs_cucj_menu_get_view('css_files_list_entries', ".$fileId.");"
                             ); ?>
                         </td>
                     </tr>
