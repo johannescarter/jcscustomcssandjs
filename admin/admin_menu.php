@@ -16,7 +16,7 @@
  * @param disabled  set true to display the button as disabled in the frontend
  */
 function jcs_cucj_echo_button( $text, $name, $onclick = '', $href = '', $disabled = false, $submit_button = false, $css_classes = '' ) {
-    if( $css_classes != '' ) {
+    if( $css_classes == '' ) {
         $css_classes = 'button button-primary';
     }
     ?>
