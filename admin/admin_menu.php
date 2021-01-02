@@ -266,7 +266,7 @@ function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
             };
 
             jQuery.post(ajaxurl, data, function(response) {
-                jcs_cucj_menu_get_view('css_files_list_entries');
+                jcs_cucj_menu_get_view('css_files_list_entries', fileId);
             });
         }
 
