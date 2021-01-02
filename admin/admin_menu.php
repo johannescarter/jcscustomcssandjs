@@ -169,7 +169,7 @@ add_action( 'admin_footer', 'jcs_cucj_admin_menu_css_files_render_view_js' ); //
 function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
 	<script type="text/javascript" >
         function jcs_cucj_create_css_file() {
-            console.log($('form').serializeArray());
+            console.log(jQuery('form').serializeArray());
         }
 
         function jcs_cucj_delete_css_file(id) {
@@ -358,7 +358,7 @@ function cs_cucj_css_files_new_file_render_view( $viewData ) {
                         <tr>
                             <td>
                                 <?php jcs_cucj_echo_button(
-                                    'Save',
+                                    'Save and close',
                                     'submit',
                                     'jcs_cucj_create_css_file();'
                                 ); ?>
