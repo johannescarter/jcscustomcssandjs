@@ -94,8 +94,8 @@
     border-bottom: 1px solid #000;
 }
 
-.jcs_cucj_list-item:nth-child(2n + 1){
-    background-color: #f9f9f9;
+.jcs_cucj_list-item:nth-child(odd) {
+    background-color: #f8f8f8;
 }
 
 .jcs_cucj_list-item:last-child {
