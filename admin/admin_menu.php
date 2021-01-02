@@ -353,6 +353,13 @@ function cs_cucj_css_files_list_files_render_view( $viewData ) {
                     }
                 ?>
             </div>
+            <div class="view-footer">
+                <div class="row">
+                    <div class="col-12">
+                        <?php jcs_cucj_echo_button( 'Create new stylesheet', 'new-css-file', "jcs_cucj_menu_get_view('css_files_new_file');" ); ?>
+                    </div>
+                </div>
+            </div>
         </div>
     <?php
 }
