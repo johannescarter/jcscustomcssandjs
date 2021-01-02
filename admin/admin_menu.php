@@ -261,7 +261,7 @@ function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
                 'action': 'jcs_cucj_create_css_entry',
                 'selector': formData[0].value,
                 'comment': formData[1].value,
-                'custom_code': editor.codemirror.getValue(),
+                'custom_code': editor.getValue(),
                 'stylesheet_id': fileId
             };
 
