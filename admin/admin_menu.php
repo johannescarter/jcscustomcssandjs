@@ -341,7 +341,7 @@ function cs_cucj_css_files_new_file_render_view( $viewData ) {
                                 <label for="description">description</label>
                             </td>
                             <td>
-                                <textarea id="description" name="description" rows="5" cols="40"></textarea>
+                                <textarea id="description" name="description" rows="5" cols="50"></textarea>
                             </td class="label">
                         </tr>
                         <tr>
