@@ -700,9 +700,56 @@ function cs_cucj_css_files_list_entries_render_view( $id ) {
  */
 function cs_cucj_css_files_new_entry_render_view( $fileId ) {
     ?>
-        <div class="wrap">
-            <h1>Create CSS entry</h1>
-        </div>
+    <div class="wrap">
+        <h1 class="jcs_cucj_view-title">Create new CSS entry</h1>
+        <form class="jcs_cucj_form">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class="label">
+                            <label for="selector">selector</label>
+                        </td>
+                        <td>
+                            <input type="text" id="selector" name="selector">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label">
+                            <label for="comment">comment</label>
+                        </td>
+                        <td>
+                            <textarea id="comment" name="comment" rows="5" cols="60"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label">
+                            <label for="custom_code">custom code</label>
+                        </td>
+                        <td>
+                            <textarea id="fancy-textarea" name="custom_code"></textarea>
+                        </td>
+                    </tr>
+                    <tr class="vertical-space"></tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td>
+                            <?php jcs_cucj_echo_button(
+                                'Save and close',
+                                'submit',
+                                "jcs_cucj_create_css_file_and_close();"
+                            );
+                            jcs_cucj_echo_button(
+                                'Cancel',
+                                'cancel',
+                                "jcs_cucj_menu_get_view('css_files_list_files');"
+                            ); ?>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </form>
+    </div>
     <?php
 }
 
