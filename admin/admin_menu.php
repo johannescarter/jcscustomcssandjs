@@ -201,7 +201,9 @@ function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
                 'id' : localId
             };
 
-            jQuery.post(ajaxurl, data, null);
+            jQuery.post(ajaxurl, data, function(response) {
+                alert(response);
+            });
         }
 
         function jcs_cucj_update_css_file_and_close() {
@@ -382,7 +384,8 @@ function jcs_cucj_update_css_file() {
             }
         }
         $query = "UPDATE " . $wpdb->prefix . "jcs_cucj_css_sheets SET " . $update . " WHERE id LIKE " . $_POST[ 'id' ] . ";";
-        $wpdb->get_results( $query );
+        echo $query;
+        //$wpdb->get_results( $query );
     }
 
     wp_die(); // this is required to terminate immediately and return a proper response
