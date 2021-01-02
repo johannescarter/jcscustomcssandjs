@@ -271,7 +271,7 @@ function jcs_cucj_delete_css_file() {
 }
 
 /**
- * ajax function to delete css files from database
+ * ajax function to insert a new css files into the database
  */
 add_action( 'wp_ajax_jcs_cucj_create_css_file', 'jcs_cucj_create_css_file' );
 function jcs_cucj_create_css_file() {
