@@ -109,6 +109,14 @@
     color: #999;
 }
 
+.jcs_cucj_list-header,
+.jcs_cucj_list-footer {
+    width: 800px;
+    background-color: #fff;
+    font-size: 15px;
+    border: 1px solid #ccd0d4;
+}
+
 /**
  * == input form ==
  */
