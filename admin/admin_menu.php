@@ -164,6 +164,7 @@ function jcs_cucj_menu_page_css_files_callback( $submenu_page ) {
      * jcs_cucj_echo_button( 'new entry', 'button', "jcs_cucj_menu_get_view('css_files_new_entry', 'peter');" );
      * jcs_cucj_echo_button( 'edit entry', 'button', "jcs_cucj_menu_get_view('css_files_edit_entry', 'peter');" );
      */
+    add_action('admin_enqueue_scripts', 'codemirror_enqueue_scripts');
     ?>
         <div id="jcs_cucj_admin_menu_view_sockel">
             <?php cs_cucj_css_files_list_files_render_view(); ?>
@@ -711,7 +712,6 @@ function cs_cucj_css_files_list_entries_render_view( $id ) {
  * @return string
  */
 function cs_cucj_css_files_new_entry_render_view( $fileId ) {
-    add_action('admin_enqueue_scripts', 'codemirror_enqueue_scripts');
     ?>
     <div class="wrap">
         <h1 class="jcs_cucj_view-title">Create new CSS entry</h1>
