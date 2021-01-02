@@ -281,6 +281,8 @@ function cs_cucj_css_files_new_file_render_view( $viewData ) {
             <?php
                 if ( current_user_can( 'manage_options' ) ) {
                     echo "Ja kann er.";
+                } else {
+                    echo "Zugriff verweigert!";
                 }
             ?>
         </div>
