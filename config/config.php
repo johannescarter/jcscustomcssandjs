@@ -27,7 +27,7 @@ define( 'JCS_CUCJ_ADMIN_MENU_LABEL', 'JCs Custom CSS & JS' );
 
 // Legt die Berechtigung fest, die ein Benutzer haben muss, damit ihm das Menü angezeigt wird
 // Übersicht aller Berechtigungen (capabilities) siehe https://wordpress.org/support/article/roles-and-capabilities/
-define( 'JCS_CUCJ_ADMIN_MENU_REQUIRED_CAPABILITY', 'edit_plugins' );
+define( 'JCS_CUCJ_ADMIN_MENU_REQUIRED_CAPABILITY', 'edit_pages' );
 
 // plugin option page slug
 define( 'JCS_CUCJ_ADMIN_MENU_PAGE_SLUG', 'jcs_cucj_admin_menu' );
