@@ -279,6 +279,31 @@ function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
             });
         }
 
+        /**
+         * update css entry and switch to entry list view
+         */
+        function jcs_cucj_update_css_entry_and_close( fileId ) {
+            var formData = jQuery('form').serializeArray();
+
+            var custom_code = '';
+
+            if(editor != null) {
+                custom_code = editor.codemirror.getValue();
+            }
+
+            var data = {
+                'action': 'jcs_cucj_update_css_entry',
+                'selector': formData[0].value,
+                'comment': formData[1].value,
+                'custom_code': custom_code,
+                'stylesheet_id': fileId
+            };
+
+            jQuery.post(ajaxurl, data, function(response) {
+                jcs_cucj_menu_get_view('css_files_list_entries', fileId);
+            });
+        }
+
         function jcs_cucj_delete_css_entry(localId) {
             var data = {
 				'action': 'jcs_cucj_delete_css_entry',
@@ -502,15 +527,49 @@ function jcs_cucj_update_css_entry() {
     }
 
     if( !empty( $_POST[ 'stylesheet_id' ] ) && !empty( $_POST[ 'selector' ] ) ) {
-        $query = "INSERT INTO " . $wpdb->prefix . "jcs_cucj_css_entries
-                  (stylesheet_id, selector, comment, custom_code)
-                  VALUES
-                  (
-                      " . esc_sql( $_POST[ 'stylesheet_id' ] ) . ",
-                      '" . esc_sql( $_POST[ 'selector' ] ) . "',
-                      '" . esc_sql( $_POST[ 'comment' ] ) . "',
-                      '" . esc_sql( $_POST[ 'custom_code' ] ) . "'
-                  );";
+        $update = '';
+        $is_first = true;
+        if( $_POST[ 'stylesheet_id' ] ) {
+            $update .= "stylesheet_id = '" . esc_sql( $_POST[ 'stylesheet_id' ] ) . "'";
+
+            if( $is_first ) {
+                $is_first = false;
+            }
+        }
+        if( $_POST[ 'selector' ] ) {
+            if( !$is_first ) {
+                $update .= ', ';
+            }
+
+            $update .= "selector = '" . esc_sql( $_POST[ 'selector' ] ) . "'";
+
+            if( $is_first ) {
+                $is_first = false;
+            }
+        }
+        if( $_POST[ 'comment' ] ) {
+            if( !$is_first ) {
+                $update .= ', ';
+            }
+
+            $update .= "comment = '" . esc_sql( $_POST[ 'comment' ] ) . "'";
+
+            if( $is_first ) {
+                $is_first = false;
+            }
+        }
+        if( $_POST[ 'custom_code' ] ) {
+            if( !$is_first ) {
+                $update .= ', ';
+            }
+
+            $update .= "custom_code = '" . esc_sql( $_POST[ 'custom_code' ] ) . "'";
+
+            if( $is_first ) {
+                $is_first = false;
+            }
+        }
+        $query = "UPDATE " . $wpdb->prefix . "jcs_cucj_css_entries SET " . $update . " WHERE id LIKE " . $_POST[ 'id' ] . ";";
         $wpdb->get_results( $query );
     }
 
@@ -964,7 +1023,7 @@ function cs_cucj_css_files_edit_entry_render_view( $entryId, $parentId ) {
                                     jcs_cucj_echo_button(
                                         'Save and close',
                                         'submit',
-                                        "jcs_cucj_create_css_entry_and_close(".$parentId.");"
+                                        "jcs_cucj_update_css_entry_and_close(".$parentId.");"
                                     );
                                     jcs_cucj_echo_button(
                                         'Cancel',
