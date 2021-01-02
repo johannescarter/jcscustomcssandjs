@@ -275,8 +275,7 @@ function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
             };
 
             jQuery.post(ajaxurl, data, function(response) {
-                alert(response);
-                //jcs_cucj_menu_get_view('css_files_list_entries', fileId);
+                jcs_cucj_menu_get_view('css_files_list_entries', fileId);
             });
         }
 
@@ -301,7 +300,7 @@ function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
 
 			jQuery.post(ajaxurl, data, function(response) {
 				jcs_cucj_menu_render(response);
-                if(jQuery('#fancy-textarea') != null) {
+                if(jQuery('#fancy-textarea').length) {
                     editor = wp.codeEditor.initialize(jQuery('#fancy-textarea'), cm_settings.cm_settings);
                 }
 			});
@@ -467,13 +466,12 @@ function jcs_cucj_create_css_entry() {
                   (stylesheet_id, selector, comment, custom_code)
                   VALUES
                   (
-                      '" . esc_sql( $_POST[ 'stylesheet_id' ] ) . "',
+                      " . esc_sql( $_POST[ 'stylesheet_id' ] ) . ",
                       '" . esc_sql( $_POST[ 'selector' ] ) . "',
                       '" . esc_sql( $_POST[ 'comment' ] ) . "',
                       '" . esc_sql( $_POST[ 'custom_code' ] ) . "'
                   );";
-        //$wpdb->get_results( $query );
-        echo $query;
+        $wpdb->get_results( $query );
     }
 
     wp_die(); // this is required to terminate immediately and return a proper response
