@@ -21,7 +21,7 @@ function jcs_cucj_echo_button( $text, $name, $onclick = '', $href = '', $disable
     <?php
 }
 
-function jcs_cucj_echo_view_actions( $ ) {
+function jcs_cucj_echo_view_actions( $param ) {
 
 }
 
