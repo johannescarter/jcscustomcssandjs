@@ -853,24 +853,20 @@ function cs_cucj_css_files_list_entries_render_view( $id ) {
                                         <p class="jcs_cucj_list-item-comment"><?= esc_html( $row->comment ); ?></p>
                                         <div class="jcs_cucj_list-item-css-code">
                                             <?= esc_html( $row->selector ); ?> {
-                                                <br />
-                                                    <div class="jcs_cucj_list-item-css-code_inner">
-                                                        <?php
-                                                            $custom_code = explode( PHP_EOL, $row->custom_code );
-                                                            $is_first = true;
-                                                            foreach ($custom_code as $code) {
-                                                                if($code != '') {
-                                                                    if($is_first) {
-                                                                        echo $code;
-                                                                        $is_first = false;
-                                                                    } else {
-                                                                        echo '<br/>' . $code;
-                                                                    }
-                                                                }
+                                                <div class="jcs_cucj_list-item-css-code_inner">
+                                                    <?php
+                                                        $custom_code = explode( PHP_EOL, $row->custom_code );
+                                                        $is_first = true;
+                                                        foreach ($custom_code as $code) {
+                                                            if($is_first) {
+                                                                echo $code;
+                                                                $is_first = false;
+                                                            } else {
+                                                                echo '<br/>' . $code;
                                                             }
-                                                        ?>
-                                                    </div>
-                                                <br />
+                                                        }
+                                                    ?>
+                                                </div>
                                             }
                                         </div>
                                     </div>
