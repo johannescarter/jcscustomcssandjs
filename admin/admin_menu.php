@@ -169,7 +169,7 @@ add_action( 'admin_footer', 'jcs_cucj_admin_menu_css_files_render_view_js' ); //
 function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
 	<script type="text/javascript" >
         function jcs_cucj_create_css_file() {
-            var formData = jQuery('form').serializeArray());
+            var formData = jQuery('form').serializeArray();
             var data = {
                 'action': 'jcs_cucj_create_css_file',
                 'name': formData[0].value,
