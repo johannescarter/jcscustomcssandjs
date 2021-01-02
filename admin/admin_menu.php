@@ -329,7 +329,7 @@ function cs_cucj_css_files_new_file_render_view( $viewData ) {
                 <table>
                     <tbody>
                         <tr>
-                            <td>
+                            <td class="label">
                                 <label for="name">name</label>
                             </td>
                             <td>
@@ -337,23 +337,25 @@ function cs_cucj_css_files_new_file_render_view( $viewData ) {
                             </td>
                         </tr>
                         <tr>
-                            <td>
+                            <td class="label">
                                 <label for="description">description</label>
                             </td>
                             <td>
                                 <textarea id="description" name="description" rows="5" cols="40"></textarea>
-                            </td>
+                            </td class="label">
                         </tr>
                         <tr>
-                            <td>
+                            <td class="label">
                                 <label for="media_query">media_query</label>
                             </td>
                             <td>
                                 <input type="text" id="media_query" name="media_query">
                             </td>
                         </tr>
+                        <tr>
+                            <br/>
+                        </tr>
                     </tbody>
-                    <br/>
                     <tfoot>
                         <tr>
                             <td>
