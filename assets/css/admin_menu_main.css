@@ -16,6 +16,10 @@
 }
 
 .jcs_cucj_form input {
-    width: 250px;
+    width: 500px;
+}
+
+.jcs_cucj_form input,
+.jcs_cucj_form textarea {
     max-width: 100%;
 }
