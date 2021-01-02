@@ -116,6 +116,10 @@
     background-color: #fff;
     font-size: 15px;
     border: 1px solid #ccd0d4;
+}
+
+.jcs_cucj_list-header > div,
+.jcs_cucj_list-footer > div {
     padding: 5px 10px;
 }
 
