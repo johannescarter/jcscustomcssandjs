@@ -185,6 +185,8 @@ function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
 	<script type="text/javascript" >
         var id = null;
 
+        var editor = null;
+
         /**
          * == css files ==
          */
@@ -255,13 +257,17 @@ function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
         function jcs_cucj_create_css_entry_and_close( fileId ) {
             var formData = jQuery('form').serializeArray();
 
-            var editor = wp.codeEditor.initialize(jQuery('#fancy-textarea'), cm_settings);
+            var custom_code = '';
+
+            if(editor != null) {
+                custom_code = editor.getValue();
+            }
 
             var data = {
                 'action': 'jcs_cucj_create_css_entry',
                 'selector': formData[0].value,
                 'comment': formData[1].value,
-                'custom_code': editor.getValue(),
+                'custom_code': custom_code,
                 'stylesheet_id': fileId
             };
 
@@ -291,7 +297,7 @@ function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
 
 			jQuery.post(ajaxurl, data, function(response) {
 				jcs_cucj_menu_render(response);
-                wp.codeEditor.initialize(jQuery('#fancy-textarea'), cm_settings);
+                editor = wp.codeEditor.initialize(jQuery('#fancy-textarea'), cm_settings);
 			});
 		}
 	</script> <?php
