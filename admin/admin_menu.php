@@ -173,6 +173,8 @@ function jcs_cucj_menu_page_css_files_callback( $submenu_page ) {
 add_action( 'admin_footer', 'jcs_cucj_admin_menu_css_files_render_view_js' ); // Write our JS below here
 function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
 	<script type="text/javascript" >
+        var id = null;
+
         function jcs_cucj_create_css_file_and_close() {
             var formData = jQuery('form').serializeArray();
 
@@ -188,11 +190,42 @@ function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
             });
         }
 
-        function jcs_cucj_delete_css_file(id) {
+        function jcs_cucj_update_css_file(localId) {
+            var formData = jQuery('form').serializeArray();
+
+            var data = {
+                'action': 'jcs_cucj_update_css_file',
+                'name': formData[0].value,
+                'description': formData[1].value,
+                'media_query': formData[2].value,
+                'id' : localId
+            };
+
+            jQuery.post(ajaxurl, data, null);
+        }
+
+        function jcs_cucj_update_css_file_and_close() {
+            var formData = jQuery('form').serializeArray();
+
+            var data = {
+                'action': 'jcs_cucj_update_css_file',
+                'name': formData[0].value,
+                'description': formData[1].value,
+                'media_query': formData[2].value
+            };
+
+            jQuery.post(ajaxurl, data, function(response) {
+				jcs_cucj_menu_get_view('css_files_list_files');
+			});
+        }
+
+        function jcs_cucj_delete_css_file(localId) {
             var data = {
 				'action': 'jcs_cucj_delete_css_file',
-                'id': id
+                'id': localId
 			};
+
+            id = localId;
 
 			// since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
 			jQuery.post(ajaxurl, data, null);
@@ -202,12 +235,16 @@ function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
 			jQuery("#jcs_cucj_admin_menu_view_sockel").html(content);
 		}
 
-		function jcs_cucj_menu_get_view(viewName, viewData = null){
+		function jcs_cucj_menu_get_view(viewName, localId = null){
 			var data = {
 				'action': 'cs_cucj_admin_menu_render_view',
                 'viewName': viewName,
 				'view_data': viewData
 			};
+
+            if(localId != null) {
+                id = localId;
+            }
 
 			// since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
 			jQuery.post(ajaxurl, data, function(response) {
@@ -273,7 +310,7 @@ function jcs_cucj_delete_css_file() {
     }
 
     if( !empty( $_POST[ 'id' ] ) ) {
-        $query = "DELETE FROM " . $wpdb->prefix . "jcs_cucj_css_sheets WHERE id LIKE " . $_POST[ 'id' ];
+        $query = "DELETE FROM " . $wpdb->prefix . "jcs_cucj_css_sheets WHERE id LIKE " . $_POST[ 'id' ] . ";";
         $wpdb->get_results( $query );
     }
 
@@ -293,7 +330,58 @@ function jcs_cucj_create_css_file() {
     }
 
     if( !empty( $_POST[ 'name' ] ) ) {
-        $query = "INSERT INTO " . $wpdb->prefix . "jcs_cucj_css_sheets (name, description, media_query) VALUES ('" . $_POST[ 'name' ] . "','" . $_POST[ 'description' ] . "','" . $_POST[ 'media_query' ] . "')";
+        $query = "INSERT INTO " . $wpdb->prefix . "jcs_cucj_css_sheets (name, description, media_query) VALUES ('" . $_POST[ 'name' ] . "','" . $_POST[ 'description' ] . "','" . $_POST[ 'media_query' ] . "');";
+        $wpdb->get_results( $query );
+    }
+
+    wp_die(); // this is required to terminate immediately and return a proper response
+}
+
+/**
+ * ajax function to update css file informations in the database
+ */
+add_action( 'wp_ajax_jcs_cucj_update_css_file', 'jcs_cucj_update_css_file' );
+function jcs_cucj_update_css_file() {
+    global $wpdb;
+
+    if ( !current_user_can( 'manage_options' ) ) {
+        echo "Access denied!";
+        wp_die(); // this is required to terminate immediately and return a proper response
+    }
+
+    if( !empty( $_POST[ 'id' ] ) ) {
+        $update = '';
+        $is_first = true;
+        if( $_POST[ 'name' ] ) {
+            $update .= "name = '" . $_POST[ 'name' ] . "'";
+
+            if( $is_first ) {
+                $is_first = false;
+            }
+        }
+        if( $_POST[ 'description' ] ) {
+            if( !$is_first ) {
+                $update .= ', ';
+            }
+
+            $update .= "description = '" . $_POST[ 'description' ] . "'";
+
+            if( $is_first ) {
+                $is_first = false;
+            }
+        }
+        if( $_POST[ 'media_query' ] ) {
+            if( !$is_first ) {
+                $update .= ', ';
+            }
+
+            $update .= "media_query = '" . $_POST[ 'media_query' ] . "'";
+
+            if( $is_first ) {
+                $is_first = false;
+            }
+        }
+        $query = "UPDATE " . $wpdb->prefix . "jcs_cucj_css_sheets SET " . $update . " WHERE id LIKE " . $_POST[ 'id' ] . ";";
         $wpdb->get_results( $query );
     }
 
@@ -432,7 +520,60 @@ function cs_cucj_css_files_new_file_render_view( $viewData ) {
 function cs_cucj_css_files_edit_file_render_view( $viewData ) {
     ?>
         <div class="wrap">
-            <h1>Edit CSS file</h1>
+            <h1 class="jcs_cucj_view-title">Edit CSS file</h1>
+            <form class="jcs_cucj_form">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td class="label">
+                                <label for="name">name</label>
+                            </td>
+                            <td>
+                                <input type="text" id="name" name="name" value="">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label">
+                                <label for="description">description</label>
+                            </td>
+                            <td>
+                                <textarea id="description" name="description" rows="5" cols="60"></textarea>
+                            </td class="label">
+                        </tr>
+                        <tr>
+                            <td class="label">
+                                <label for="media_query">media_query</label>
+                            </td>
+                            <td>
+                                <input type="text" id="media_query" name="media_query">
+                            </td>
+                        </tr>
+                        <tr class="vertical-space"></tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td>
+                                <?php
+                                jcs_cucj_echo_button(
+                                    'Save',
+                                    'save',
+                                    "jcs_cucj_update_css_file();"
+                                );
+                                jcs_cucj_echo_button(
+                                    'Save and close',
+                                    'save-and-close',
+                                    "jcs_cucj_update_css_file_and_close();"
+                                );
+                                jcs_cucj_echo_button(
+                                    'Close',
+                                    'close',
+                                    "jcs_cucj_menu_get_view('css_files_list_files');"
+                                ); ?>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </form>
         </div>
     <?php
 }
