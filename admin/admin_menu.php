@@ -322,11 +322,12 @@ function cs_cucj_css_files_list_files_render_view( $viewData ) {
  * @param viewData  mixed Array containing any view parameter
  */
 function cs_cucj_css_files_new_file_render_view( $viewData ) {
+    jcs_cucj_register_admin_css();
     ?>
         <div class="wrap">
             <h1 class="jcs_cucj_view-title">Create new CSS file</h1>
-            <form>
-                <table class="form-table">
+            <form class="jcs_cucj_form">
+                <table>
                     <tr>
                         <td>
                             <label for="name">name</label>
