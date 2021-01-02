@@ -169,7 +169,13 @@ add_action( 'admin_footer', 'jcs_cucj_admin_menu_css_files_render_view_js' ); //
 function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
 	<script type="text/javascript" >
         function jcs_cucj_create_css_file() {
-            console.log(jQuery('form').serializeArray());
+            var formData = jQuery('form').serializeArray());
+            var data = {
+                'action': 'jcs_cucj_create_css_file',
+                'name': formData[0].value,
+                'description': formData[1].value,
+                'media_query': formData[2].value
+            };
         }
 
         function jcs_cucj_delete_css_file(id) {
@@ -258,6 +264,26 @@ function jcs_cucj_delete_css_file() {
 
     if( !empty( $_POST[ 'id' ] ) ) {
         $query = "DELETE FROM " . $wpdb->prefix . "jcs_cucj_css_sheets WHERE id LIKE " . $_POST[ 'id' ];
+        $wpdb->get_results( $query );
+    }
+
+    wp_die(); // this is required to terminate immediately and return a proper response
+}
+
+/**
+ * ajax function to delete css files from database
+ */
+add_action( 'wp_ajax_jcs_cucj_create_css_file', 'jcs_cucj_create_css_file' );
+function jcs_cucj_create_css_file() {
+    global $wpdb;
+
+    if ( !current_user_can( 'manage_options' ) ) {
+        echo "Access denied!";
+        wp_die(); // this is required to terminate immediately and return a proper response
+    }
+
+    if( !empty( $_POST[ 'name' ] ) && !empty( $_POST[ 'description' ] ) && !empty( $_POST[ 'media_query' ] ) ) {
+        $query = "INSERT INTO " . $wpdb->prefix . "jcs_cucj_css_sheets (name, description, media_query) VALUES (" . $_POST[ 'name' ] . "," . $_POST[ 'description' ] . "," . $_POST[ 'media_query' ] . ")";
         $wpdb->get_results( $query );
     }
 
@@ -360,7 +386,7 @@ function cs_cucj_css_files_new_file_render_view( $viewData ) {
                                 <?php jcs_cucj_echo_button(
                                     'Save and close',
                                     'submit',
-                                    'jcs_cucj_create_css_file();'
+                                    "jcs_cucj_create_css_file();jcs_cucj_menu_get_view('css_files_list_files')";
                                 ); ?>
                             </td>
                         </tr>
