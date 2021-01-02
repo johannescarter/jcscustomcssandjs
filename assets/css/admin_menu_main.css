@@ -6,6 +6,10 @@
     justify-content: flex-end;
 }
 
+.flex-column {
+    flex-direction: column;
+}
+
 .row {
     display: flex;
     width: 100%;
