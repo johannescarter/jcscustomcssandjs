@@ -245,8 +245,6 @@ function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
                 'id': localId
 			};
 
-            id = localId;
-
 			jQuery.post(ajaxurl, data, null);
         }
 
@@ -277,6 +275,15 @@ function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
             jQuery.post(ajaxurl, data, function(response) {
                 jcs_cucj_menu_get_view('css_files_list_entries', fileId);
             });
+        }
+
+        function jcs_cucj_delete_css_entry(localId) {
+            var data = {
+				'action': 'jcs_cucj_delete_css_entry',
+                'id': localId
+			};
+
+			jQuery.post(ajaxurl, data, null);
         }
 
         /**
@@ -349,26 +356,6 @@ function cs_cucj_admin_menu_render_view() {
     }
 
 	wp_die(); // this is required to terminate immediately and return a proper response
-}
-
-/**
- * ajax function to delete css files from database
- */
-add_action( 'wp_ajax_jcs_cucj_delete_css_file', 'jcs_cucj_delete_css_file' );
-function jcs_cucj_delete_css_file() {
-    global $wpdb;
-
-    if ( !current_user_can( 'manage_options' ) ) {
-        echo "Access denied!";
-        wp_die(); // this is required to terminate immediately and return a proper response
-    }
-
-    if( !empty( $_POST[ 'id' ] ) ) {
-        $query = "DELETE FROM " . $wpdb->prefix . "jcs_cucj_css_sheets WHERE id LIKE " . esc_sql( $_POST[ 'id' ] ) . ";";
-        $wpdb->get_results( $query );
-    }
-
-    wp_die(); // this is required to terminate immediately and return a proper response
 }
 
 /**
@@ -450,6 +437,26 @@ function jcs_cucj_update_css_file() {
 }
 
 /**
+ * ajax function to delete css files from database
+ */
+add_action( 'wp_ajax_jcs_cucj_delete_css_file', 'jcs_cucj_delete_css_file' );
+function jcs_cucj_delete_css_file() {
+    global $wpdb;
+
+    if ( !current_user_can( 'manage_options' ) ) {
+        echo "Access denied!";
+        wp_die(); // this is required to terminate immediately and return a proper response
+    }
+
+    if( !empty( $_POST[ 'id' ] ) ) {
+        $query = "DELETE FROM " . $wpdb->prefix . "jcs_cucj_css_sheets WHERE id LIKE " . esc_sql( $_POST[ 'id' ] ) . ";";
+        $wpdb->get_results( $query );
+    }
+
+    wp_die(); // this is required to terminate immediately and return a proper response
+}
+
+/**
  * ajax function to insert a new css entry into the database
  */
 add_action( 'wp_ajax_jcs_cucj_create_css_entry', 'jcs_cucj_create_css_entry' );
@@ -471,6 +478,54 @@ function jcs_cucj_create_css_entry() {
                       '" . esc_sql( $_POST[ 'comment' ] ) . "',
                       '" . esc_sql( $_POST[ 'custom_code' ] ) . "'
                   );";
+        $wpdb->get_results( $query );
+    }
+
+    wp_die(); // this is required to terminate immediately and return a proper response
+}
+
+/**
+ * ajax function to insert a new css entry into the database
+ */
+add_action( 'wp_ajax_jcs_cucj_update_css_entry', 'jcs_cucj_update_css_entry' );
+function jcs_cucj_update_css_entry() {
+    global $wpdb;
+
+    if ( !current_user_can( 'manage_options' ) ) {
+        echo "Access denied!";
+        wp_die(); // this is required to terminate immediately and return a proper response
+    }
+
+    if( !empty( $_POST[ 'stylesheet_id' ] ) && !empty( $_POST[ 'selector' ] ) ) {
+        $query = "INSERT INTO " . $wpdb->prefix . "jcs_cucj_css_entries
+                  (stylesheet_id, selector, comment, custom_code)
+                  VALUES
+                  (
+                      " . esc_sql( $_POST[ 'stylesheet_id' ] ) . ",
+                      '" . esc_sql( $_POST[ 'selector' ] ) . "',
+                      '" . esc_sql( $_POST[ 'comment' ] ) . "',
+                      '" . esc_sql( $_POST[ 'custom_code' ] ) . "'
+                  );";
+        $wpdb->get_results( $query );
+    }
+
+    wp_die(); // this is required to terminate immediately and return a proper response
+}
+
+/**
+ * ajax function to insert a new css entry into the database
+ */
+add_action( 'wp_ajax_jcs_cucj_delete_css_entry', 'jcs_cucj_delete_css_entry' );
+function jcs_cucj_delete_css_entry() {
+    global $wpdb;
+
+    if ( !current_user_can( 'manage_options' ) ) {
+        echo "Access denied!";
+        wp_die(); // this is required to terminate immediately and return a proper response
+    }
+
+    if( !empty( $_POST[ 'id' ] ) ) {
+        $query = "DELETE FROM " . $wpdb->prefix . "jcs_cucj_css_entries WHERE id LIKE " . esc_sql( $_POST[ 'id' ] ) . ";";
         $wpdb->get_results( $query );
     }
 
@@ -730,7 +785,7 @@ function cs_cucj_css_files_list_entries_render_view( $id ) {
                                                 jcs_cucj_echo_button(
                                                     'delete',
                                                     'button',
-                                                    "",
+                                                    "jcs_cucj_delete_css_entry(".$row->id.");",
                                                     '',
                                                     false,
                                                     false,
