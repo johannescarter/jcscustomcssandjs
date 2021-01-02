@@ -272,22 +272,22 @@ function cs_cucj_admin_menu_render_view() {
 
     switch ($_POST['viewName']) {
         case 'css_files_list_files':
-            cs_cucj_css_files_list_files_render_view($_POST['viewData']);
+            cs_cucj_css_files_list_files_render_view();
             break;
         case 'css_files_new_file':
-            cs_cucj_css_files_new_file_render_view($_POST['viewData']);
+            cs_cucj_css_files_new_file_render_view();
             break;
         case 'css_files_edit_file':
-            cs_cucj_css_files_edit_file_render_view($_POST['viewData']);
+            cs_cucj_css_files_edit_file_render_view( $_POST['id'] );
             break;
         case 'css_files_list_entries':
-            cs_cucj_css_files_list_entries_render_view($_POST['viewData']);
+            cs_cucj_css_files_list_entries_render_view( $_POST['id'] );
             break;
         case 'css_files_new_entry':
-            cs_cucj_css_files_new_entry_render_view($_POST['viewData']);
+            cs_cucj_css_files_new_entry_render_view( $_POST['id'] );
             break;
         case 'css_files_edit_entry':
-            cs_cucj_css_files_edit_entry_render_view($_POST['viewData']);
+            cs_cucj_css_files_edit_entry_render_view( $_POST['id'] );
             break;
         default:
             // TODO echo error msg
@@ -396,7 +396,7 @@ function jcs_cucj_update_css_file() {
  * Renders a css_files_list_files view
  * @param viewData  mixed Array containing any view parameter
  */
-function cs_cucj_css_files_list_files_render_view( $viewData = null ) {
+function cs_cucj_css_files_list_files_render_view() {
     ?>
         <div class="wrap">
             <h1 class="jcs_cucj_view-title">List of all CSS files</h1>
@@ -458,7 +458,7 @@ function cs_cucj_css_files_list_files_render_view( $viewData = null ) {
  * Renders a css_files_new_file view
  * @param viewData  mixed Array containing any view parameter
  */
-function cs_cucj_css_files_new_file_render_view( $viewData ) {
+function cs_cucj_css_files_new_file_render_view() {
     ?>
         <div class="wrap">
             <h1 class="jcs_cucj_view-title">Create new CSS file</h1>
@@ -517,7 +517,7 @@ function cs_cucj_css_files_new_file_render_view( $viewData ) {
  * Renders a css_files_edit_file view
  * @param viewData  mixed Array containing any view parameter
  */
-function cs_cucj_css_files_edit_file_render_view( $viewData ) {
+function cs_cucj_css_files_edit_file_render_view( $id ) {
     ?>
         <div class="wrap">
             <h1 class="jcs_cucj_view-title">Edit CSS file</h1>
@@ -582,7 +582,7 @@ function cs_cucj_css_files_edit_file_render_view( $viewData ) {
  * Renders a css_files_list_entries view
  * @param viewData  mixed Array containing any view parameter
  */
-function cs_cucj_css_files_list_entries_render_view( $viewData ) {
+function cs_cucj_css_files_list_entries_render_view( $id ) {
     ?>
         <div class="wrap">
             <h1>List of all Entries of the CSS file</h1>
@@ -595,7 +595,7 @@ function cs_cucj_css_files_list_entries_render_view( $viewData ) {
  * @param viewData  mixed Array containing any view parameter
  * @return string
  */
-function cs_cucj_css_files_new_entry_render_view( $viewData ) {
+function cs_cucj_css_files_new_entry_render_view( $fileId ) {
     ?>
         <div class="wrap">
             <h1>Create CSS entry</h1>
@@ -608,7 +608,7 @@ function cs_cucj_css_files_new_entry_render_view( $viewData ) {
  * @param viewData  mixed Array containing any view parameter
  * @return string
  */
-function cs_cucj_css_files_edit_entry_render_view( $viewData ) {
+function cs_cucj_css_files_edit_entry_render_view( $entryId ) {
     ?>
         <div class="wrap">
             <h1>Edit CSS entry</h1>
