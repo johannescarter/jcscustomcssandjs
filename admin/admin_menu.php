@@ -21,6 +21,10 @@ function jcs_cucj_echo_button( $text, $name, $onclick = '', $href = '', $disable
     <?php
 }
 
+function jcs_cucj_echo_view_actions( $ ) {
+
+}
+
 
 /**
  * == Menu functions ==
@@ -231,9 +235,41 @@ function cs_cucj_css_files_list_files_render_view( $viewData ) {
         <div class="wrap">
             <h1 class="jcs_cucj_view-title">List of all CSS files</h1>
             <div class="jcs_cucj_list">
-                <div class="jcs_cucj_list-item">
+                <?php
+                    global $wpdb;
 
-                </div>
+                    $query = "SELECT * FROM " . $wpdb->prefix . "jcs_cucj_css_sheets ORDER BY name";
+                    $result = $wpdb->get_results( $query );
+
+                    foreach ( $result as $row ) {
+                        ?>
+                            <div class="jcs_cucj_list-item row">
+                                <div class="col-8">
+                                    <?php if( !empty( $row->name ) ) { ?>
+                                        <span class="jcs_cucj_list-item-name"><?= $row->name; ?></span>
+                                    <?php } ?>
+                                    <?php if( !empty( $row->media_query ) ) { ?>
+                                        <span class="jcs_cucj_list-item-media_query">@media <?= $row->media_query; ?></span>
+                                    <?php } ?>
+                                </div>
+                                <div class="col-4">
+                                    <?php jcs_cucj_echo_button(
+                                        'edit',
+                                        'button',
+                                        "jcs_cucj_menu_get_view('css_files_edit_file', ".$row->id.");"
+                                    ); ?>
+                                </div>
+                                <div class="col-4">
+                                    <?php jcs_cucj_echo_button(
+                                        'delete',
+                                        'button',
+                                        "jcs_cucj_delete_css_file(".$row->id.");jcs_cucj_menu_get_view('css_files_edit_file', ".$row->id.");"
+                                    ); ?>
+                                </div>
+                            </div>
+                        <?php
+                    }
+                ?>
             </div>
         </div>
     <?php
@@ -247,6 +283,11 @@ function cs_cucj_css_files_new_file_render_view( $viewData ) {
     ?>
         <div class="wrap">
             <h1>Create new CSS file</h1>
+            <?php
+                if ( current_user_caen( 'manage_options' ) ) {
+                    echo "Ja kann er.";
+                }
+            ?>
         </div>
     <?php
 }
