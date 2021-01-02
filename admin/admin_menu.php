@@ -275,7 +275,8 @@ function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
             };
 
             jQuery.post(ajaxurl, data, function(response) {
-                jcs_cucj_menu_get_view('css_files_list_entries', fileId);
+                alert(response);
+                //jcs_cucj_menu_get_view('css_files_list_entries', fileId);
             });
         }
 
@@ -471,7 +472,8 @@ function jcs_cucj_create_css_entry() {
                       '" . esc_sql( $_POST[ 'comment' ] ) . "',
                       '" . esc_sql( $_POST[ 'custom_code' ] ) . "'
                   );";
-        $wpdb->get_results( $query );
+        //$wpdb->get_results( $query );
+        echo $query;
     }
 
     wp_die(); // this is required to terminate immediately and return a proper response
