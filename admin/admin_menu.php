@@ -15,9 +15,9 @@
  * @param href  link for the button
  * @param disabled  set true to display the button as disabled in the frontend
  */
-function jcs_cucj_echo_button( $text, $name, $onclick = '', $href = '', $disabled = false ) {
+function jcs_cucj_echo_button( $text, $name, $onclick = '', $href = '', $disabled = false, $submit_button = false ) {
     ?>
-        <button class="button button-primary" type="button" name="<?= $name; ?>"<?= ($onclick != '')?' onclick="'.$onclick.'"':''; ?><?= ($disabled)?' disabled':''; ?>><?= $text; ?></button>
+        <button class="button button-primary" type="<?= ($submit_button)?'submit':'button';?>" name="<?= $name; ?>"<?= ($onclick != '')?' onclick="'.$onclick.'"':''; ?><?= ($disabled)?' disabled':''; ?>><?= $text; ?></button>
     <?php
 }
 
@@ -334,7 +334,7 @@ function cs_cucj_css_files_new_file_render_view( $viewData ) {
                     media_query
                     <input type="text" id="media_query" name="media_query">
                 </label>
-                <?php submit_button(); ?>
+                <?php jcs_cucj_echo_button( 'Save', 'submit', 'cs_cucj_create_css_file();' ) ?>
             </form>
         </div>
     <?php
