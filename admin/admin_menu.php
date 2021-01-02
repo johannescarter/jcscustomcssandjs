@@ -620,6 +620,14 @@ function cs_cucj_css_files_list_files_render_view() {
     ?>
         <div class="wrap">
             <h1 class="jcs_cucj_view-title">List of all CSS files</h1>
+            <div class="jcs_cucj_list-header row">
+                <div class="col-8">
+                    CSS file
+                </div>
+                <div class="col-4">
+                    actions
+                </div>
+            </div>
             <div class="jcs_cucj_list">
                 <?php
                     global $wpdb;
@@ -673,6 +681,14 @@ function cs_cucj_css_files_list_files_render_view() {
                         <?php
                     }
                 ?>
+            </div>
+            <div class="jcs_cucj_list-footer row">
+                <div class="col-8">
+                    CSS file
+                </div>
+                <div class="col-4">
+                    actions
+                </div>
             </div>
             <div class="jcs_cucj_view-footer">
                 <div class="row">
