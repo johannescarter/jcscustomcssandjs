@@ -409,6 +409,11 @@ function cs_cucj_css_files_new_file_render_view( $viewData ) {
                                     'submit',
                                     "jcs_cucj_create_css_file_and_close();"
                                 ); ?>
+                                <?php jcs_cucj_echo_button(
+                                    'Cancel',
+                                    'cancel',
+                                    "jcs_cucj_menu_get_view('css_files_list_files');"
+                                ); ?>
                             </td>
                         </tr>
                     </tfoot>
