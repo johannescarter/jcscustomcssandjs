@@ -12,7 +12,7 @@ if ( ! defined( 'WPINC' ) ) {
  * register css for admin area
  */
 function jcs_cucj_register_admin_css() {
-    wp_enqueue_style( 'jcs_cucj_css_main', plugin_dir_url( __FILE__ ) . '/assets/css/main.css' );
+    wp_enqueue_style( 'jcs_cucj_css_main', plugin_dir_url( __FILE__ ) . 'assets/css/main.css' );
 }
 
 add_action( 'admin_menu', 'jcs_cucj_admin_menu_init' );
