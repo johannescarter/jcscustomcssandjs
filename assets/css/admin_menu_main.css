@@ -1,6 +1,6 @@
 /**
  *
  */
-.jcs_cucj_form {
-    background-color: red !important;
+.jcs_cucj_form label {
+    font-weight: bold;
 }
