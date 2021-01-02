@@ -332,14 +332,22 @@ function cs_cucj_css_files_list_files_render_view( $viewData ) {
                                     <?php jcs_cucj_echo_button(
                                         'edit',
                                         'button',
-                                        "jcs_cucj_menu_get_view('css_files_edit_file', ".$row->id.");"
+                                        "jcs_cucj_menu_get_view('css_files_edit_file', ".$row->id.");",
+                                        '',
+                                        false,
+                                        false,
+                                        'jcs_cucj_button'
                                     ); ?>
                                 </div>
                                 <div class="col-2">
                                     <?php jcs_cucj_echo_button(
                                         'delete',
                                         'button',
-                                        "jcs_cucj_delete_css_file(".$row->id.");jcs_cucj_menu_get_view('css_files_edit_file', ".$row->id.");"
+                                        "jcs_cucj_delete_css_file(".$row->id.");jcs_cucj_menu_get_view('css_files_edit_file', ".$row->id.");",
+                                        '',
+                                        false,
+                                        false,
+                                        'jcs_cucj_button'
                                     ); ?>
                                 </div>
                             </div>
