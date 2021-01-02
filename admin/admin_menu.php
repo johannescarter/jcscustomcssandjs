@@ -279,7 +279,7 @@ function cs_cucj_css_files_new_file_render_view( $viewData ) {
         <div class="wrap">
             <h1>Create new CSS file</h1>
             <?php
-                if ( current_user_caen( 'manage_options' ) ) {
+                if ( current_user_can( 'manage_options' ) ) {
                     echo "Ja kann er.";
                 }
             ?>
