@@ -871,6 +871,7 @@ function cs_cucj_css_files_list_entries_render_view( $id ) {
                                         </div>
                                     </div>
                                 </div>
+                                <p>Test</p>
                                 <div class="col-1">
                                 </div>
                                 <div class="col-4 justify-content-flex-end">
