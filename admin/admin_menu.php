@@ -523,7 +523,7 @@ function cs_cucj_css_files_edit_file_render_view( $id ) {
     $query = "SELECT * FROM " . $wpdb->prefix . "jcs_cucj_css_sheets WHERE id LIKE " . $id . " LIMIT 1";
     $result = $wpdb->get_results( $query );
 
-    $row = $result->fetch_row();
+    $row = $result[0];
 
     ?>
         <div class="wrap">
