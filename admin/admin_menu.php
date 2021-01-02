@@ -854,7 +854,7 @@ function cs_cucj_css_files_list_entries_render_view( $id ) {
                                         <p class="jcs_cucj_list-item-css-code">
                                             <?= esc_html( $row->selector ); ?> {
                                                 <br />
-                                                    <span class="jcs_cucj_list-item-css-code_inner"><?= str_replace( ";", ";<br/>", esc_html( $row->custom_code ) ); ?></span>
+                                                    <span class="jcs_cucj_list-item-css-code_inner"><?= str_replace( ";", ';</span><br/><span class="jcs_cucj_list-item-css-code_inner">', esc_html( $row->custom_code ) ); ?></span>
                                                 <br />
                                             }
                                         </p>
