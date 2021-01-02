@@ -14,3 +14,8 @@
 .jcs_cucj_form tbody {
     margin-bottom: 1.5rem;
 }
+
+.jcs_cucj_form input {
+    width: 250px;
+    max-width: 100%;
+}
