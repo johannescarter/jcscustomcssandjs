@@ -1,6 +1,12 @@
-/**
- *
- */
+.jcs_cucj_view-title {
+    margin-bottom: 1.5rem;
+}
+
 .jcs_cucj_form label {
     font-weight: bold;
+    min-width: 200px;
+}
+
+.jcs_cucj_form tbody {
+    margin-bottom: 1.5rem;
 }
