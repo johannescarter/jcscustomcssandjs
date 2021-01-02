@@ -326,7 +326,7 @@ function cs_cucj_css_files_new_file_render_view( $viewData ) {
         <div class="wrap">
             <h1 class="jcs_cucj_view-title">Create new CSS file</h1>
             <form>
-                <table>
+                <table class="form-table">
                     <tr>
                         <td>
                             <label for="name">name</label>
@@ -352,11 +352,13 @@ function cs_cucj_css_files_new_file_render_view( $viewData ) {
                         </td>
                     </tr>
                     <tr>
-                        <?php jcs_cucj_echo_button(
-                            'Save',
-                            'submit',
-                            'jcs_cucj_create_css_file();'
-                        ); ?>
+                        <td>
+                            <?php jcs_cucj_echo_button(
+                                'Save',
+                                'submit',
+                                'jcs_cucj_create_css_file();'
+                            ); ?>
+                        </td>
                     </tr>
                 </table>
             </form>
