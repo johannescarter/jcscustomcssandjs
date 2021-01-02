@@ -168,7 +168,7 @@ function jcs_cucj_menu_page_css_files_callback( $submenu_page ) {
 add_action( 'admin_footer', 'jcs_cucj_admin_menu_css_files_render_view_js' ); // Write our JS below here
 function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
 	<script type="text/javascript" >
-        function jcs_cucj_create_css_file() {
+        function jcs_cucj_create_css_file_and_close() {
             var formData = jQuery('form').serializeArray();
             var data = {
                 'action': 'jcs_cucj_create_css_file',
@@ -185,7 +185,10 @@ function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
 			};
 
 			// since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
-			jQuery.post(ajaxurl, data, null);
+			jQuery.post(ajaxurl, data, function(response) {
+                alert('Got this from the server: ' + response);
+                //jcs_cucj_menu_get_view('css_files_list_files');
+            });
         }
 
 		function jcs_cucj_menu_render(content) {
@@ -386,7 +389,7 @@ function cs_cucj_css_files_new_file_render_view( $viewData ) {
                                 <?php jcs_cucj_echo_button(
                                     'Save and close',
                                     'submit',
-                                    "jcs_cucj_create_css_file();jcs_cucj_menu_get_view('css_files_list_files');"
+                                    "jcs_cucj_create_css_file_and_close();"
                                 ); ?>
                             </td>
                         </tr>
