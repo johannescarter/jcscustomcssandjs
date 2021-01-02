@@ -30,6 +30,14 @@ function jcs_cucj_echo_button( $text, $name, $onclick = '', $href = '', $disable
 
 add_action('admin_menu', 'jcs_cucj_setup_menu');
 
+function codemirror_enqueue_scripts($hook) {
+    $cm_settings['codeEditor'] = wp_enqueue_code_editor(array('type' => 'text/css'));
+    wp_localize_script('jquery', 'cm_settings', $cm_settings);
+
+    wp_enqueue_script('wp-theme-plugin-editor');
+    wp_enqueue_style('wp-codemirror');
+}
+
 /**
  * Adds a settings page in the backend for admins
  */
@@ -250,6 +258,10 @@ function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
 				jcs_cucj_menu_render(response);
 			});
 		}
+
+        jQuery(document).ready(function($) {
+            wp.codeEditor.initialize($('#fancy-textarea'), cm_settings);
+        })
 	</script> <?php
 }
 
@@ -699,6 +711,7 @@ function cs_cucj_css_files_list_entries_render_view( $id ) {
  * @return string
  */
 function cs_cucj_css_files_new_entry_render_view( $fileId ) {
+    add_action('admin_enqueue_scripts', 'codemirror_enqueue_scripts');
     ?>
     <div class="wrap">
         <h1 class="jcs_cucj_view-title">Create new CSS entry</h1>
