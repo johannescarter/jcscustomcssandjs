@@ -14,7 +14,19 @@ if ( ! defined( 'WPINC' ) ) {
 function jcs_cucj_register_admin_css() {
     wp_enqueue_style( 'jcs_cucj_css_main', plugin_dir_url( __FILE__ ) . '/assets/css/main.css' );
 }
-jcs_cucj_register_admin_css();
+
+add_action( 'admin_menu', 'jcs_cucj_admin_menu_init' );
+
+function jcs_cucj_admin_menu_init() {
+    jcs_cucj_register_admin_css();
+}
+
+/**
+ * Register our stylesheet.
+ */
+function wpdocs_plugin_admin_init() {
+    wp_register_style( 'wpdocsPluginStylesheet', plugins_url( 'stylesheet.css', __FILE__ ) );
+}
 
 /**
  * This function is called, when the plugin is activated.
