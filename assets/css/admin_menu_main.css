@@ -71,6 +71,10 @@
     margin-bottom: 1.5rem !important;
 }
 
+.jcs_cucj_view-footer {
+    padding: 15px;
+}
+
 /**
  * == list ==
  */
@@ -96,7 +100,7 @@
 }
 
 .jcs_cucj_list-item button {
-    padding-left: 10px;
+    margin-left: 10px;
 }
 
 .jcs_cucj_list-item-media_query {
