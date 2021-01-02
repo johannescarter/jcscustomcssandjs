@@ -156,7 +156,11 @@ function jcs_cucj_menu_page_css_files_callback( $submenu_page ) {
      * jcs_cucj_echo_button( 'new entry', 'button', "jcs_cucj_menu_get_view('css_files_new_entry', 'peter');" );
      * jcs_cucj_echo_button( 'edit entry', 'button', "jcs_cucj_menu_get_view('css_files_edit_entry', 'peter');" );
      */
- 	cs_cucj_css_files_list_files_render_view();
+    ?>
+        <div id="jcs_cucj_admin_menu_view_sockel">
+            <?php cs_cucj_css_files_list_files_render_view(); ?>
+        </div>
+    <?php
 }
 
 /**
@@ -205,13 +209,9 @@ function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
 				'view_data': viewData
 			};
 
-            console.log("sending request: ");
-            console.log(data);
-
 			// since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
 			jQuery.post(ajaxurl, data, function(response) {
-                alert(response);
-				//jcs_cucj_menu_render(response);
+				jcs_cucj_menu_render(response);
 			});
 		}
 	</script> <?php
@@ -238,9 +238,7 @@ function cs_cucj_admin_menu_render_view() {
             cs_cucj_css_files_list_files_render_view($_POST['viewData']);
             break;
         case 'css_files_new_file':
-            echo "new file view";
-            wp_die();
-            //cs_cucj_css_files_new_file_render_view($_POST['viewData']);
+            cs_cucj_css_files_new_file_render_view($_POST['viewData']);
             break;
         case 'css_files_edit_file':
             cs_cucj_css_files_edit_file_render_view($_POST['viewData']);
