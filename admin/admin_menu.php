@@ -758,6 +758,14 @@ function cs_cucj_css_files_list_entries_render_view( $id ) {
     ?>
         <div class="wrap">
             <h1 class="jcs_cucj_view-title">List of all Entries of the CSS file with id <?= $id; ?></h1>
+            <div class="jcs_cucj_list-header row">
+                <div class="col-8">
+                    CSS entry
+                </div>
+                <div class="col-4">
+                    actions
+                </div>
+            </div>
             <div class="jcs_cucj_list">
                 <?php
                     global $wpdb;
@@ -806,6 +814,14 @@ function cs_cucj_css_files_list_entries_render_view( $id ) {
                         <?php
                     }
                 ?>
+            </div>
+            <div class="jcs_cucj_list-footer row">
+                <div class="col-8">
+                    CSS entry
+                </div>
+                <div class="col-4">
+                    actions
+                </div>
             </div>
             <div class="jcs_cucj_view-footer">
                 <div class="row">

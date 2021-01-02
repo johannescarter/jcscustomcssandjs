@@ -134,6 +134,12 @@
 /**
  * == entries list ==
  */
+
+.jcs_cucj_list-item-comment {
+    color: #006799;
+    font-weight: bold;
+}
+
 .jcs_cucj_list-item-css-code {
     padding: 5px 10px;
     background-color: #eee;
