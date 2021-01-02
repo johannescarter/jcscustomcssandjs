@@ -567,12 +567,12 @@ function cs_cucj_css_files_edit_file_render_view( $id ) {
                                 jcs_cucj_echo_button(
                                     'Save',
                                     'save',
-                                    "jcs_cucj_update_css_file();"
+                                    "jcs_cucj_update_css_file(".$id.");"
                                 );
                                 jcs_cucj_echo_button(
                                     'Save and close',
                                     'save-and-close',
-                                    "jcs_cucj_update_css_file_and_close();"
+                                    "jcs_cucj_update_css_file_and_close(".$id.");"
                                 );
                                 jcs_cucj_echo_button(
                                     'Close',
