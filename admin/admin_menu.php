@@ -239,7 +239,7 @@ function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
 			var data = {
 				'action': 'cs_cucj_admin_menu_render_view',
                 'viewName': viewName,
-				'view_data': viewData
+				'id': localId
 			};
 
             if(localId != null) {
