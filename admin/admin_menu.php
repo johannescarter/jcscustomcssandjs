@@ -800,10 +800,12 @@ function cs_cucj_css_files_list_entries_render_view( $id ) {
                                     </div>
                                     <div class="row">
                                         <div class="col-12">
-                                            <span class="jcs_cucj_list-item-code">
-                                                <?= esc_html( $row->selector ); ?> {<br />
-                                                    <?= esc_html( $row->custom_code ); ?>
-                                                <br />}
+                                            <span class="jcs_cucj_list-item-css-code">
+                                                <?= esc_html( $row->selector ); ?> {
+                                                    <br />
+                                                        <div class="jcs_cucj_list-item-css-code_inner"><?= esc_html( $row->custom_code ); ?></div>
+                                                    <br />
+                                                }
                                             </span>
                                         </div>
                                     </div>
