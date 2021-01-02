@@ -776,7 +776,7 @@ function cs_cucj_css_files_list_entries_render_view( $id ) {
                     foreach ( $result as $row ) {
                         ?>
                             <div class="jcs_cucj_list-item row">
-                                <div class="col-8">
+                                <div class="col-7">
                                     <div class="row flex-column">
                                         <p class="jcs_cucj_list-item-comment"><?= esc_html( $row->comment ); ?></p>
                                         <p class="jcs_cucj_list-item-css-code">
@@ -787,6 +787,8 @@ function cs_cucj_css_files_list_entries_render_view( $id ) {
                                             }
                                         </p>
                                     </div>
+                                </div>
+                                <div class="col-1">
                                 </div>
                                 <div class="col-4 justify-content-flex-end">
                                     <?php
