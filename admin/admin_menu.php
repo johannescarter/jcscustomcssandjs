@@ -353,6 +353,7 @@ function cs_cucj_css_files_new_file_render_view( $viewData ) {
                             </td>
                         </tr>
                     </tbody>
+                    <br/>
                     <tfoot>
                         <tr>
                             <td>
