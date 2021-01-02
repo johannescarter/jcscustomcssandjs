@@ -283,7 +283,7 @@ function jcs_cucj_create_css_file() {
     }
 
     if( !empty( $_POST[ 'name' ] ) && !empty( $_POST[ 'description' ] ) && !empty( $_POST[ 'media_query' ] ) ) {
-        $query = "INSERT INTO " . $wpdb->prefix . "jcs_cucj_css_sheets (name, description, media_query) VALUES (" . $_POST[ 'name' ] . "," . $_POST[ 'description' ] . "," . $_POST[ 'media_query' ] . ")";
+        $query = "INSERT INTO " . $wpdb->prefix . "jcs_cucj_css_sheets (name, description, media_query) VALUES ('" . $_POST[ 'name' ] . "','" . $_POST[ 'description' ] . "','" . $_POST[ 'media_query' ] . "')";
         $wpdb->get_results( $query );
     }
 
