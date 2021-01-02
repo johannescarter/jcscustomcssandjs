@@ -851,10 +851,10 @@ function cs_cucj_css_files_list_entries_render_view( $id ) {
                                 <div class="col-7">
                                     <div class="row flex-column">
                                         <p class="jcs_cucj_list-item-comment"><?= esc_html( $row->comment ); ?></p>
-                                        <p class="jcs_cucj_list-item-css-code">
+                                        <div class="jcs_cucj_list-item-css-code">
                                             <?= esc_html( $row->selector ); ?> {
                                                 <br />
-                                                    <span class="jcs_cucj_list-item-css-code_inner">
+                                                    <div class="jcs_cucj_list-item-css-code_inner">
                                                         <?php
                                                             $custom_code = explode( PHP_EOL, $row->custom_code );
                                                             $is_first = true;
@@ -867,10 +867,10 @@ function cs_cucj_css_files_list_entries_render_view( $id ) {
                                                                 }
                                                             }
                                                         ?>
-                                                    </span>
+                                                    </div>
                                                 <br />
                                             }
-                                        </p>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-1">
