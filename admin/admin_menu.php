@@ -170,7 +170,7 @@ function jcs_cucj_menu_page_css_files_callback( $submenu_page ) {
  /**
   * adds a js function to select a view in css files menu
   */
-add_action( 'admin_footer', 'jcs_cucj_admin_menu_css_files_render_view_js' ); // Write our JS below here
+add_action( 'admin_footer', 'jcs_cucj_admin_menu_css_files_render_view_js' );
 function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
 	<script type="text/javascript" >
         var id = null;
@@ -228,7 +228,6 @@ function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
 
             id = localId;
 
-			// since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
 			jQuery.post(ajaxurl, data, null);
         }
 
@@ -247,7 +246,6 @@ function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
                 id = localId;
             }
 
-			// since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
 			jQuery.post(ajaxurl, data, function(response) {
 				jcs_cucj_menu_render(response);
 			});
@@ -427,24 +425,31 @@ function cs_cucj_css_files_list_files_render_view() {
                                     <?php } ?>
                                 </div>
                                 <div class="col-4 justify-content-flex-end">
-                                    <?php jcs_cucj_echo_button(
-                                        'edit',
-                                        'button',
-                                        "jcs_cucj_menu_get_view('css_files_edit_file', ".$row->id.");",
-                                        '',
-                                        false,
-                                        false,
-                                        'jcs_cucj_button'
-                                    ); ?>
-                                    <?php jcs_cucj_echo_button(
-                                        'delete',
-                                        'button',
-                                        "jcs_cucj_delete_css_file(".$row->id.");jcs_cucj_menu_get_view('css_files_edit_file', ".$row->id.");",
-                                        '',
-                                        false,
-                                        false,
-                                        'jcs_cucj_button'
-                                    ); ?>
+                                    <?php
+                                        jcs_cucj_echo_button(
+                                            'edit entries',
+                                            'button',
+                                            "jcs_cucj_menu_get_view('css_files_list_entries', ".$row->id.");"
+                                        );
+                                        jcs_cucj_echo_button(
+                                            'edit file',
+                                            'button',
+                                            "jcs_cucj_menu_get_view('css_files_edit_file', ".$row->id.");",
+                                            '',
+                                            false,
+                                            false,
+                                            'jcs_cucj_button'
+                                        );
+                                        jcs_cucj_echo_button(
+                                            'delete',
+                                            'button',
+                                            "jcs_cucj_delete_css_file(".$row->id.");jcs_cucj_menu_get_view('css_files_edit_file', ".$row->id.");",
+                                            '',
+                                            false,
+                                            false,
+                                            'jcs_cucj_button'
+                                        );
+                                    ?>
                                 </div>
                             </div>
                         <?php
@@ -606,7 +611,7 @@ function cs_cucj_css_files_edit_file_render_view( $id ) {
 function cs_cucj_css_files_list_entries_render_view( $id ) {
     ?>
         <div class="wrap">
-            <h1>List of all Entries of the CSS file</h1>
+            <h1>List of all Entries of the CSS file with id <?= $id; ?></h1>
         </div>
     <?php
 }
