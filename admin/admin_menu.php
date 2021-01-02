@@ -931,7 +931,7 @@ function cs_cucj_css_files_edit_entry_render_view( $entryId, $parentId ) {
                                 <label for="selector">selector</label>
                             </td>
                             <td>
-                                <input type="text" id="selector" name="selector" value="value="<?= esc_attr( $row->selector ); ?>"">
+                                <input type="text" id="selector" name="selector" value="<?= esc_attr( $row->selector ); ?>">
                             </td>
                         </tr>
                         <tr>
