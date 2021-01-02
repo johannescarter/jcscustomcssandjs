@@ -170,7 +170,7 @@ function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
 	<script type="text/javascript" >
         function jcs_cucj_create_css_file_and_close() {
             var formData = jQuery('form').serializeArray();
-            
+
             var data = {
                 'action': 'jcs_cucj_create_css_file',
                 'name': formData[0].value,
@@ -179,8 +179,7 @@ function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
             };
 
             jQuery.post(ajaxurl, data, function(response) {
-                alert('Got this from the server: ' + response);
-                //jcs_cucj_menu_get_view('css_files_list_files');
+                jcs_cucj_menu_get_view('css_files_list_files');
             });
         }
 
