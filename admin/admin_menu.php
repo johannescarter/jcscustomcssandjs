@@ -352,9 +352,7 @@ function cs_cucj_css_files_new_file_render_view( $viewData ) {
                                 <input type="text" id="media_query" name="media_query">
                             </td>
                         </tr>
-                        <tr>
-                            <br/>
-                        </tr>
+                        <tr class="vertical-space"></tr>
                     </tbody>
                     <tfoot>
                         <tr>
