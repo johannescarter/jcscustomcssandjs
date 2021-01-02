@@ -210,7 +210,8 @@ function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
 
 			// since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
 			jQuery.post(ajaxurl, data, function(response) {
-				jcs_cucj_menu_render(response);
+                alert(response);
+				//jcs_cucj_menu_render(response);
 			});
 		}
 	</script> <?php
@@ -239,7 +240,7 @@ function cs_cucj_admin_menu_render_view() {
         case 'css_files_new_file':
             echo "new file view";
             wp_die();
-            cs_cucj_css_files_new_file_render_view($_POST['viewData']);
+            //cs_cucj_css_files_new_file_render_view($_POST['viewData']);
             break;
         case 'css_files_edit_file':
             cs_cucj_css_files_edit_file_render_view($_POST['viewData']);
