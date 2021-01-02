@@ -44,7 +44,7 @@ function jcs_cucj_activate() {
     $sql = "CREATE TABLE $table_name (
         id int(255) NOT NULL AUTO_INCREMENT,
         selector longtext NOT NULL,
-        description longtext,
+        comment longtext,
         custom_code longtext,
         PRIMARY KEY (id)
     ) $charset_collate;";
