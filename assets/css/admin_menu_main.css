@@ -87,10 +87,15 @@
     width: 800px;
     background-color: #fff;
     font-size: 15px;
+    border: 1px solid #ccd0d4;
 }
 
 .jcs_cucj_list-item {
     border-bottom: 1px solid #000;
+}
+
+.jcs_cucj_list-item:nth-child(1+2n){
+    background-color: #f9f9f9;
 }
 
 .jcs_cucj_list-item:last-child {
@@ -132,4 +137,17 @@
 .jcs_cucj_form input,
 .jcs_cucj_form textarea {
     max-width: 100%;
+}
+
+/**
+ * == entries list ==
+ */
+.jcs_cucj_list-item-css-code {
+    padding: 5px 10px;
+    background-color: #eee;
+    border-radius: 5px;
+}
+
+.jcs_cucj_list-item-css-code_inner {
+    padding-left: 20px;
 }
