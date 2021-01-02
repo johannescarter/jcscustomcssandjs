@@ -145,7 +145,6 @@ function jcs_cucj_menu_page_general_settigns_callback() {
  * callback function for the css files list page
  */
 function jcs_cucj_menu_page_css_files_callback( $submenu_page ) {
-    jcs_cucj_register_admin_css();
  	?>
 		<div id="jcs_cucj_admin_menu_view_sockel">
 			<p>Hello, World!</p>

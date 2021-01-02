@@ -12,8 +12,9 @@ if ( ! defined( 'WPINC' ) ) {
  * register css for admin area
  */
 function jcs_cucj_register_admin_css() {
-    wp_enqueue_style( 'jcs_cucj_css_main', plugin_dir_url( __FILE__ ) . '/admin/assets/css/main.css' );
+    wp_enqueue_style( 'jcs_cucj_css_main', plugin_dir_url( __FILE__ ) . '/assets/css/main.css' );
 }
+jcs_cucj_register_admin_css();
 
 /**
  * This function is called, when the plugin is activated.
