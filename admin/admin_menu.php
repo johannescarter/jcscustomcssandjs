@@ -328,7 +328,7 @@ function cs_cucj_css_files_list_files_render_view( $viewData ) {
                                         <span class="jcs_cucj_list-item-media_query">@media <?= $row->media_query; ?></span>
                                     <?php } ?>
                                 </div>
-                                <div class="col-2">
+                                <div class="col-4 justify-content-flex-end">
                                     <?php jcs_cucj_echo_button(
                                         'edit',
                                         'button',
@@ -338,8 +338,6 @@ function cs_cucj_css_files_list_files_render_view( $viewData ) {
                                         false,
                                         'jcs_cucj_button'
                                     ); ?>
-                                </div>
-                                <div class="col-2">
                                     <?php jcs_cucj_echo_button(
                                         'delete',
                                         'button',
