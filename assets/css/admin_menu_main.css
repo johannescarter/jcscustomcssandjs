@@ -86,7 +86,9 @@
 }
 
 .jcs_cucj_list-item > div {
-    padding: 5px;
+    padding: 5px 10px;
+    display: flex;
+    align-items: center;
 }
 
 /**
