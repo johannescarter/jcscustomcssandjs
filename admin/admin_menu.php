@@ -344,11 +344,13 @@ function cs_cucj_css_files_new_file_render_view( $viewData ) {
                         <input type="text" id="media_query" name="media_query">
                     </label>
                 </p>
-                <?php jcs_cucj_echo_button(
-                    'Save',
-                    'submit',
-                    'jcs_cucj_create_css_file();'
-                ); ?>
+                <p>
+                    <?php jcs_cucj_echo_button(
+                        'Save',
+                        'submit',
+                        'jcs_cucj_create_css_file();'
+                    ); ?>
+                </p>
             </form>
         </div>
     <?php
