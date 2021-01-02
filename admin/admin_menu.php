@@ -518,6 +518,13 @@ function cs_cucj_css_files_new_file_render_view() {
  * @param viewData  mixed Array containing any view parameter
  */
 function cs_cucj_css_files_edit_file_render_view( $id ) {
+    global $wpdb;
+
+    $query = "SELECT * FROM " . $wpdb->prefix . "jcs_cucj_css_sheets WHERE id LIKE " . $id . " LIMIT 1";
+    $result = $wpdb->get_results( $query );
+
+    $row = $result->fetch_row();
+
     ?>
         <div class="wrap">
             <h1 class="jcs_cucj_view-title">Edit CSS file</h1>
@@ -529,7 +536,7 @@ function cs_cucj_css_files_edit_file_render_view( $id ) {
                                 <label for="name">name</label>
                             </td>
                             <td>
-                                <input type="text" id="name" name="name" value="">
+                                <input type="text" id="name" name="name" value="<?= $row->name; ?>">
                             </td>
                         </tr>
                         <tr>
@@ -537,7 +544,7 @@ function cs_cucj_css_files_edit_file_render_view( $id ) {
                                 <label for="description">description</label>
                             </td>
                             <td>
-                                <textarea id="description" name="description" rows="5" cols="60"></textarea>
+                                <textarea id="description" name="description" rows="5" cols="60"><?= $row->description; ?></textarea>
                             </td class="label">
                         </tr>
                         <tr>
@@ -545,7 +552,7 @@ function cs_cucj_css_files_edit_file_render_view( $id ) {
                                 <label for="media_query">media_query</label>
                             </td>
                             <td>
-                                <input type="text" id="media_query" name="media_query">
+                                <input type="text" id="media_query" name="media_query" value="<?= $row->media_query; ?>">
                             </td>
                         </tr>
                         <tr class="vertical-space"></tr>
