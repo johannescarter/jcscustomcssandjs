@@ -87,7 +87,8 @@
     width: 800px;
     background-color: #fff;
     font-size: 15px;
-    border: 1px solid #ccd0d4;
+    border-left: 1px solid #ccd0d4;
+    border-right: 1px solid #ccd0d4;
 }
 
 .jcs_cucj_list-item:nth-child(odd) {
@@ -115,6 +116,7 @@
     background-color: #fff;
     font-size: 15px;
     border: 1px solid #ccd0d4;
+    padding: 5px 10px;
 }
 
 /**
