@@ -300,7 +300,9 @@ function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
 
 			jQuery.post(ajaxurl, data, function(response) {
 				jcs_cucj_menu_render(response);
-                editor = wp.codeEditor.initialize(jQuery('#fancy-textarea'), cm_settings.cm_settings);
+                if(jQuery('#fancy-textarea') != null) {
+                    editor = wp.codeEditor.initialize(jQuery('#fancy-textarea'), cm_settings.cm_settings);
+                }
 			});
 		}
 	</script> <?php
