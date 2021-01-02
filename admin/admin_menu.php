@@ -170,12 +170,18 @@ function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
 	<script type="text/javascript" >
         function jcs_cucj_create_css_file_and_close() {
             var formData = jQuery('form').serializeArray();
+            
             var data = {
                 'action': 'jcs_cucj_create_css_file',
                 'name': formData[0].value,
                 'description': formData[1].value,
                 'media_query': formData[2].value
             };
+
+            jQuery.post(ajaxurl, data, function(response) {
+                alert('Got this from the server: ' + response);
+                //jcs_cucj_menu_get_view('css_files_list_files');
+            });
         }
 
         function jcs_cucj_delete_css_file(id) {
@@ -185,10 +191,7 @@ function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
 			};
 
 			// since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
-			jQuery.post(ajaxurl, data, function(response) {
-                alert('Got this from the server: ' + response);
-                //jcs_cucj_menu_get_view('css_files_list_files');
-            });
+			jQuery.post(ajaxurl, data, null);
         }
 
 		function jcs_cucj_menu_render(content) {
