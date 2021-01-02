@@ -768,47 +768,37 @@ function cs_cucj_css_files_list_entries_render_view( $id ) {
                     foreach ( $result as $row ) {
                         ?>
                             <div class="jcs_cucj_list-item row">
-                                <div class="col-12">
-                                    <div class="row">
-                                        <div class="col-8">
-                                            <?php if( !empty( $row->comment ) ) { ?>
-                                                <span class="jcs_cucj_list-item-comment"><?= esc_html( $row->comment ); ?></span>
-                                            <?php } ?>
-                                        </div>
-                                        <div class="col-4 justify-content-flex-end">
-                                            <?php
-                                                jcs_cucj_echo_button(
-                                                    'edit',
-                                                    'button',
-                                                    "jcs_cucj_menu_get_view('css_files_edit_entry', ".$row->id.");",
-                                                    '',
-                                                    false,
-                                                    false,
-                                                    'jcs_cucj_button'
-                                                );
-                                                jcs_cucj_echo_button(
-                                                    'delete',
-                                                    'button',
-                                                    "jcs_cucj_delete_css_entry(".$row->id.");",
-                                                    '',
-                                                    false,
-                                                    false,
-                                                    'jcs_cucj_button'
-                                                );
-                                            ?>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <span class="jcs_cucj_list-item-css-code">
-                                                <?= esc_html( $row->selector ); ?> {
-                                                    <br />
-                                                        <div class="jcs_cucj_list-item-css-code_inner"><?= esc_html( $row->custom_code ); ?></div>
-                                                    <br />
-                                                }
-                                            </span>
-                                        </div>
-                                    </div>
+                                <div class="col-8">
+                                    <span class="jcs_cucj_list-item-comment"><?= esc_html( $row->comment ); ?></span>
+                                    <span class="jcs_cucj_list-item-css-code">
+                                        <?= esc_html( $row->selector ); ?> {
+                                            <br />
+                                                <div class="jcs_cucj_list-item-css-code_inner"><?= esc_html( $row->custom_code ); ?></div>
+                                            <br />
+                                        }
+                                    </span>
+                                </div>
+                                <div class="col-4 justify-content-flex-end">
+                                    <?php
+                                        jcs_cucj_echo_button(
+                                            'edit',
+                                            'button',
+                                            "jcs_cucj_menu_get_view('css_files_edit_entry', ".$row->id.");",
+                                            '',
+                                            false,
+                                            false,
+                                            'jcs_cucj_button'
+                                        );
+                                        jcs_cucj_echo_button(
+                                            'delete',
+                                            'button',
+                                            "jcs_cucj_delete_css_entry(".$row->id.");",
+                                            '',
+                                            false,
+                                            false,
+                                            'jcs_cucj_button'
+                                        );
+                                    ?>
                                 </div>
                             </div>
                         <?php
