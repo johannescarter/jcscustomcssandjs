@@ -326,18 +326,24 @@ function cs_cucj_css_files_new_file_render_view( $viewData ) {
         <div class="wrap">
             <h1 class="jcs_cucj_view-title">Create new CSS file</h1>
             <form>
-                <label for="name">
-                    name
-                    <input type="text" id="name" name="name">
-                </label>
-                <label for="description">
-                    description
-                    <textarea id="description" name="description" rows="5" cols="40"></textarea>
-                </label>
-                <label for="media_query">
-                    media_query
-                    <input type="text" id="media_query" name="media_query">
-                </label>
+                <p>
+                    <label for="name">
+                        name
+                        <input type="text" id="name" name="name">
+                    </label>
+                </p>
+                <p>
+                    <label for="description">
+                        description
+                        <textarea id="description" name="description" rows="5" cols="40"></textarea>
+                    </label>
+                </p>
+                <p>
+                    <label for="media_query">
+                        media_query
+                        <input type="text" id="media_query" name="media_query">
+                    </label>
+                </p>
                 <?php jcs_cucj_echo_button(
                     'Save',
                     'submit',
