@@ -298,11 +298,12 @@ function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
 			jQuery("#jcs_cucj_admin_menu_view_sockel").html(content);
 		}
 
-		function jcs_cucj_menu_get_view(viewName, localId = null){
+		function jcs_cucj_menu_get_view(viewName, localId = null, parentId = null){
 			var data = {
 				'action': 'cs_cucj_admin_menu_render_view',
                 'viewName': viewName,
-				'id': localId
+				'id': localId,
+                'parentId': parentId
 			};
 
             if(localId != null) {
@@ -352,7 +353,7 @@ function cs_cucj_admin_menu_render_view() {
             cs_cucj_css_files_new_entry_render_view( $_POST['id'] );
             break;
         case 'css_files_edit_entry':
-            cs_cucj_css_files_edit_entry_render_view( $_POST['id'] );
+            cs_cucj_css_files_edit_entry_render_view( $_POST['id'], $_POST['parentId'] );
             break;
         default:
             // TODO echo error msg
@@ -795,7 +796,7 @@ function cs_cucj_css_files_list_entries_render_view( $id ) {
                                         jcs_cucj_echo_button(
                                             'edit',
                                             'button',
-                                            "jcs_cucj_menu_get_view('css_files_edit_entry', ".$row->id.");",
+                                            "jcs_cucj_menu_get_view('css_files_edit_entry', ".$row->id.", ".$row->stylesheet_id.");",
                                             '',
                                             false,
                                             false,
@@ -854,56 +855,56 @@ function cs_cucj_css_files_list_entries_render_view( $id ) {
  */
 function cs_cucj_css_files_new_entry_render_view( $fileId ) {
     ?>
-    <div class="wrap">
-        <h1 class="jcs_cucj_view-title">Create new CSS entry</h1>
-        <form class="jcs_cucj_form">
-            <table>
-                <tbody>
-                    <tr>
-                        <td class="label">
-                            <label for="selector">selector</label>
-                        </td>
-                        <td>
-                            <input type="text" id="selector" name="selector">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="label">
-                            <label for="comment">comment</label>
-                        </td>
-                        <td>
-                            <textarea id="comment" name="comment" rows="5" cols="60"></textarea>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="label">
-                            <label for="custom_code">custom code</label>
-                        </td>
-                        <td>
-                            <textarea id="fancy-textarea" name="custom_code"></textarea>
-                        </td>
-                    </tr>
-                    <tr class="vertical-space"></tr>
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <td>
-                            <?php jcs_cucj_echo_button(
-                                'Save and close',
-                                'submit',
-                                "jcs_cucj_create_css_entry_and_close(".$fileId.");"
-                            );
-                            jcs_cucj_echo_button(
-                                'Cancel',
-                                'cancel',
-                                "jcs_cucj_menu_get_view('css_files_list_entries', ".$fileId.");"
-                            ); ?>
-                        </td>
-                    </tr>
-                </tfoot>
-            </table>
-        </form>
-    </div>
+        <div class="wrap">
+            <h1 class="jcs_cucj_view-title">Create new CSS entry</h1>
+            <form class="jcs_cucj_form">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td class="label">
+                                <label for="selector">selector</label>
+                            </td>
+                            <td>
+                                <input type="text" id="selector" name="selector">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label">
+                                <label for="comment">comment</label>
+                            </td>
+                            <td>
+                                <textarea id="comment" name="comment" rows="5" cols="60"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label">
+                                <label for="custom_code">custom code</label>
+                            </td>
+                            <td>
+                                <textarea id="fancy-textarea" name="custom_code"></textarea>
+                            </td>
+                        </tr>
+                        <tr class="vertical-space"></tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td>
+                                <?php jcs_cucj_echo_button(
+                                    'Save and close',
+                                    'submit',
+                                    "jcs_cucj_create_css_entry_and_close(".$fileId.");"
+                                );
+                                jcs_cucj_echo_button(
+                                    'Cancel',
+                                    'cancel',
+                                    "jcs_cucj_menu_get_view('css_files_list_entries', ".$fileId.");"
+                                ); ?>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </form>
+        </div>
     <?php
 }
 
@@ -912,10 +913,70 @@ function cs_cucj_css_files_new_entry_render_view( $fileId ) {
  * @param viewData  mixed Array containing any view parameter
  * @return string
  */
-function cs_cucj_css_files_edit_entry_render_view( $entryId ) {
+function cs_cucj_css_files_edit_entry_render_view( $entryId, $parentId ) {
+    global $wpdb;
+
+    $query = "SELECT * FROM " . $wpdb->prefix . "jcs_cucj_css_entries WHERE id LIKE " . $entryId . " LIMIT 1";
+    $result = $wpdb->get_results( $query );
+
+    $row = $result[0];
     ?>
         <div class="wrap">
-            <h1>Edit CSS entry</h1>
+            <h1 class="jcs_cucj_view-title">Create new CSS entry</h1>
+            <form class="jcs_cucj_form">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td class="label">
+                                <label for="selector">selector</label>
+                            </td>
+                            <td>
+                                <input type="text" id="selector" name="selector" value="value="<?= esc_attr( $row->selector ); ?>"">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label">
+                                <label for="comment">comment</label>
+                            </td>
+                            <td>
+                                <textarea id="comment" name="comment" rows="5" cols="60"><?= esc_attr( $row->comment ); ?></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label">
+                                <label for="custom_code">custom code</label>
+                            </td>
+                            <td>
+                                <textarea id="fancy-textarea" name="custom_code"><?= esc_attr( $row->custom_code ); ?></textarea>
+                            </td>
+                        </tr>
+                        <tr class="vertical-space"></tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td>
+                                <?php
+                                    jcs_cucj_echo_button(
+                                        'Save',
+                                        'save',
+                                        "jcs_cucj_update_css_file(".$entryId.");"
+                                    );
+                                    jcs_cucj_echo_button(
+                                        'Save and close',
+                                        'submit',
+                                        "jcs_cucj_create_css_entry_and_close(".$parentId.");"
+                                    );
+                                    jcs_cucj_echo_button(
+                                        'Cancel',
+                                        'cancel',
+                                        "jcs_cucj_menu_get_view('css_files_list_entries', ".$parentId.");"
+                                    );
+                                ?>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </form>
         </div>
     <?php
 }
