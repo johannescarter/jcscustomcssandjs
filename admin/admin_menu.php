@@ -255,11 +255,13 @@ function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
         function jcs_cucj_create_css_entry_and_close( fileId ) {
             var formData = jQuery('form').serializeArray();
 
+            var editor = wp.codeEditor.initialize($('#fancy-textarea'), my_var.cm_settings);
+
             var data = {
                 'action': 'jcs_cucj_create_css_entry',
                 'selector': formData[0].value,
                 'comment': formData[1].value,
-                'custom_code': formData[2].value,
+                'custom_code': editor.codemirror.getValue(),
                 'stylesheet_id': fileId
             };
 
@@ -807,7 +809,7 @@ function cs_cucj_css_files_new_entry_render_view( $fileId ) {
                             <?php jcs_cucj_echo_button(
                                 'Save and close',
                                 'submit',
-                                "jcs_cucj_create_css_entry_and_close();"
+                                "jcs_cucj_create_css_entry_and_close(".$fileId.");"
                             );
                             jcs_cucj_echo_button(
                                 'Cancel',
