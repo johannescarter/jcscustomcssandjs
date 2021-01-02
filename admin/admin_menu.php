@@ -148,17 +148,15 @@ function jcs_cucj_menu_page_general_settigns_callback() {
  * callback function for the css files list page
  */
 function jcs_cucj_menu_page_css_files_callback( $submenu_page ) {
- 	?>
-		<div id="jcs_cucj_admin_menu_view_sockel">
-			<p>Hello, World!</p>
-			<?php jcs_cucj_echo_button( 'files list', 'button', "jcs_cucj_menu_get_view('css_files_list_files', 'peter');" ); ?>
-            <?php jcs_cucj_echo_button( 'new file', 'button', "jcs_cucj_menu_get_view('css_files_new_file', 'peter');" ); ?>
-            <?php jcs_cucj_echo_button( 'edit file', 'button', "jcs_cucj_menu_get_view('css_files_edit_file', 'peter');" ); ?>
-            <?php jcs_cucj_echo_button( 'entries list', 'button', "jcs_cucj_menu_get_view('css_files_list_entries', 'peter');" ); ?>
-            <?php jcs_cucj_echo_button( 'new entry', 'button', "jcs_cucj_menu_get_view('css_files_new_entry', 'peter');" ); ?>
-            <?php jcs_cucj_echo_button( 'edit entry', 'button', "jcs_cucj_menu_get_view('css_files_edit_entry', 'peter');" ); ?>
-		</div>
-	<?php
+    /**
+     * jcs_cucj_echo_button( 'files list', 'button', "jcs_cucj_menu_get_view('css_files_list_files', 'peter');" );
+     * jcs_cucj_echo_button( 'new file', 'button', "jcs_cucj_menu_get_view('css_files_new_file', 'peter');" );
+     * jcs_cucj_echo_button( 'edit file', 'button', "jcs_cucj_menu_get_view('css_files_edit_file', 'peter');" );
+     * jcs_cucj_echo_button( 'entries list', 'button', "jcs_cucj_menu_get_view('css_files_list_entries', 'peter');" );
+     * jcs_cucj_echo_button( 'new entry', 'button', "jcs_cucj_menu_get_view('css_files_new_entry', 'peter');" );
+     * jcs_cucj_echo_button( 'edit entry', 'button', "jcs_cucj_menu_get_view('css_files_edit_entry', 'peter');" );
+     */
+ 	cs_cucj_css_files_list_files_render_view();
 }
 
 /**
