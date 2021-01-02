@@ -168,6 +168,10 @@ function jcs_cucj_menu_page_css_files_callback( $submenu_page ) {
 add_action( 'admin_footer', 'jcs_cucj_admin_menu_css_files_render_view_js' ); // Write our JS below here
 function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
 	<script type="text/javascript" >
+        function jcs_cucj_create_css_file() {
+            console.log($('form').serializeArray());
+        }
+
         function jcs_cucj_delete_css_file(id) {
             var data = {
 				'action': 'jcs_cucj_delete_css_file',
@@ -334,7 +338,11 @@ function cs_cucj_css_files_new_file_render_view( $viewData ) {
                     media_query
                     <input type="text" id="media_query" name="media_query">
                 </label>
-                <?php jcs_cucj_echo_button( 'Save', 'submit', 'cs_cucj_create_css_file();' ) ?>
+                <?php jcs_cucj_echo_button(
+                    'Save',
+                    'submit',
+                    'jcs_cucj_create_css_file();'
+                ); ?>
             </form>
         </div>
     <?php
