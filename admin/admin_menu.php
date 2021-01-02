@@ -750,7 +750,7 @@ function cs_cucj_css_files_list_entries_render_view( $id ) {
                             jcs_cucj_echo_button(
                                 'Create new entry',
                                 'new-css-file',
-                                "jcs_cucj_menu_get_view('css_files_new_entry');"
+                                "jcs_cucj_menu_get_view('css_files_new_entry', ".$id.");"
                             );
                             jcs_cucj_echo_button(
                                 'Back to stylesheet list',
