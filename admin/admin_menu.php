@@ -768,15 +768,17 @@ function cs_cucj_css_files_list_entries_render_view( $id ) {
                     foreach ( $result as $row ) {
                         ?>
                             <div class="jcs_cucj_list-item row">
-                                <div class="col-8 flex-column">
-                                    <span class="jcs_cucj_list-item-comment"><?= esc_html( $row->comment ); ?></span>
-                                    <span class="jcs_cucj_list-item-css-code">
-                                        <?= esc_html( $row->selector ); ?> {
-                                            <br />
-                                                <div class="jcs_cucj_list-item-css-code_inner"><?= esc_html( $row->custom_code ); ?></div>
-                                            <br />
-                                        }
-                                    </span>
+                                <div class="col-8">
+                                    <div class="row">
+                                        <span class="jcs_cucj_list-item-comment"><?= esc_html( $row->comment ); ?></span>
+                                        <span class="jcs_cucj_list-item-css-code">
+                                            <?= esc_html( $row->selector ); ?> {
+                                                <br />
+                                                    <div class="jcs_cucj_list-item-css-code_inner"><?= esc_html( $row->custom_code ); ?></div>
+                                                <br />
+                                            }
+                                        </span>
+                                    </div>
                                 </div>
                                 <div class="col-4 justify-content-flex-end">
                                     <?php
