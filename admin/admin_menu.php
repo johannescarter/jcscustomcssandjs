@@ -703,7 +703,7 @@ function cs_cucj_css_files_list_entries_render_view( $id ) {
                 <?php
                     global $wpdb;
 
-                    $query = "SELECT * FROM " . $wpdb->prefix . "jcs_cucj_css_entries WHERE stylesheet_id LIKE " . esc_sql( $id ) . " ORDER BY name ;";
+                    $query = "SELECT * FROM " . $wpdb->prefix . "jcs_cucj_css_entries WHERE stylesheet_id LIKE " . esc_sql( $id ) . " ORDER BY selector;";
                     $result = $wpdb->get_results( $query );
 
                     foreach ( $result as $row ) {
