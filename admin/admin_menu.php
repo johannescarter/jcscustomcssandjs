@@ -386,7 +386,7 @@ function cs_cucj_css_files_new_file_render_view( $viewData ) {
                                 <?php jcs_cucj_echo_button(
                                     'Save and close',
                                     'submit',
-                                    "jcs_cucj_create_css_file();jcs_cucj_menu_get_view('css_files_list_files')";
+                                    "jcs_cucj_create_css_file();jcs_cucj_menu_get_view('css_files_list_files');"
                                 ); ?>
                             </td>
                         </tr>
