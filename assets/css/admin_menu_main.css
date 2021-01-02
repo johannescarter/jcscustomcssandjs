@@ -105,6 +105,11 @@
     margin-left: 10px;
 }
 
+.jcs_cucj_list-item-name {
+    color: #006799;
+    font-weight: 500;
+}
+
 .jcs_cucj_list-item-media_query {
     padding-left: 5px;
     color: #999;
