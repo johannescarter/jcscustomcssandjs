@@ -282,6 +282,29 @@ function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
         /**
          * update css entry and switch to entry list view
          */
+        function jcs_cucj_update_css_entry( fileId ) {
+            var formData = jQuery('form').serializeArray();
+
+            var custom_code = '';
+
+            if(editor != null) {
+                custom_code = editor.codemirror.getValue();
+            }
+
+            var data = {
+                'action': 'jcs_cucj_update_css_entry',
+                'selector': formData[0].value,
+                'comment': formData[1].value,
+                'custom_code': custom_code,
+                'stylesheet_id': fileId
+            };
+
+            jQuery.post(ajaxurl, data, null);
+        }
+
+        /**
+         * update css entry and switch to entry list view
+         */
         function jcs_cucj_update_css_entry_and_close( fileId ) {
             var formData = jQuery('form').serializeArray();
 
@@ -1018,7 +1041,7 @@ function cs_cucj_css_files_edit_entry_render_view( $entryId, $parentId ) {
                                     jcs_cucj_echo_button(
                                         'Save',
                                         'save',
-                                        "jcs_cucj_update_css_file(".$entryId.");"
+                                        "jcs_cucj_update_css_entry(".$entryId.");"
                                     );
                                     jcs_cucj_echo_button(
                                         'Save and close',
