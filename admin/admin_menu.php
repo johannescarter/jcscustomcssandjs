@@ -15,9 +15,12 @@
  * @param href  link for the button
  * @param disabled  set true to display the button as disabled in the frontend
  */
-function jcs_cucj_echo_button( $text, $name, $onclick = '', $href = '', $disabled = false, $submit_button = false ) {
+function jcs_cucj_echo_button( $text, $name, $onclick = '', $href = '', $disabled = false, $submit_button = false, $css_classes = '' ) {
+    if( $css_classes != '' ) {
+        $css_classes = 'button button-primary';
+    }
     ?>
-        <button class="button button-primary" type="<?= ($submit_button)?'submit':'button';?>" name="<?= $name; ?>"<?= ($onclick != '')?' onclick="'.$onclick.'"':''; ?><?= ($disabled)?' disabled':''; ?>><?= $text; ?></button>
+        <button class="<?= $css_classes; ?>" type="<?= ($submit_button)?'submit':'button';?>" name="<?= $name; ?>"<?= ($onclick != '')?' onclick="'.$onclick.'"':''; ?><?= ($disabled)?' disabled':''; ?>><?= $text; ?></button>
     <?php
 }
 
@@ -325,14 +328,14 @@ function cs_cucj_css_files_list_files_render_view( $viewData ) {
                                         <span class="jcs_cucj_list-item-media_query">@media <?= $row->media_query; ?></span>
                                     <?php } ?>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-2">
                                     <?php jcs_cucj_echo_button(
                                         'edit',
                                         'button',
                                         "jcs_cucj_menu_get_view('css_files_edit_file', ".$row->id.");"
                                     ); ?>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-2">
                                     <?php jcs_cucj_echo_button(
                                         'delete',
                                         'button',
