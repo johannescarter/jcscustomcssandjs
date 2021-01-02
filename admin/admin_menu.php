@@ -615,7 +615,80 @@ function cs_cucj_css_files_edit_file_render_view( $id ) {
 function cs_cucj_css_files_list_entries_render_view( $id ) {
     ?>
         <div class="wrap">
-            <h1>List of all Entries of the CSS file with id <?= $id; ?></h1>
+            <h1 class="jcs_cucj_view-title">List of all Entries of the CSS file with id <?= $id; ?></h1>
+            <div class="jcs_cucj_list">
+                <?php
+                    global $wpdb;
+
+                    $query = "SELECT * FROM " . $wpdb->prefix . "jcs_cucj_css_entries ORDER BY name WHERE id LIKE " . esc_sql( $id ) . ";";
+                    $result = $wpdb->get_results( $query );
+
+                    foreach ( $result as $row ) {
+                        ?>
+                            <div class="jcs_cucj_list-item row">
+                                <div class="col-12">
+                                    <div class="row">
+                                        <div class="col-8">
+                                            <?php if( !empty( $row->comment ) ) { ?>
+                                                <span class="jcs_cucj_list-item-comment"><?= esc_html( $row->comment ); ?></span>
+                                            <?php } ?>
+                                        </div>
+                                        <div class="col-4 justify-content-flex-end">
+                                            <?php
+                                                jcs_cucj_echo_button(
+                                                    'edit',
+                                                    'button',
+                                                    "jcs_cucj_menu_get_view('css_files_edit_entry', ".$row->id.");",
+                                                    '',
+                                                    false,
+                                                    false,
+                                                    'jcs_cucj_button'
+                                                );
+                                                jcs_cucj_echo_button(
+                                                    'delete',
+                                                    'button',
+                                                    "",
+                                                    '',
+                                                    false,
+                                                    false,
+                                                    'jcs_cucj_button'
+                                                );
+                                            ?>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <span class="jcs_cucj_list-item-code">
+                                                <?= esc_html( $row->selector ); ?> {
+                                                    <?= esc_html( $row->custom_code ); ?>
+                                                }
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php
+                    }
+                ?>
+            </div>
+            <div class="jcs_cucj_view-footer">
+                <div class="row">
+                    <div class="col-12">
+                        <?php
+                            jcs_cucj_echo_button(
+                                'Create new entry',
+                                'new-css-file',
+                                "jcs_cucj_menu_get_view('css_files_new_entry');"
+                            );
+                            jcs_cucj_echo_button(
+                                'Back to stylesheet list',
+                                'new-css-file',
+                                "jcs_cucj_menu_get_view('css_files_list_files');"
+                            );
+                        ?>
+                    </div>
+                </div>
+            </div>
         </div>
     <?php
 }
