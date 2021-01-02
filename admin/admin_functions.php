@@ -43,7 +43,7 @@ function jcs_cucj_activate() {
 
     $sql = "CREATE TABLE $table_name (
         id int(255) NOT NULL AUTO_INCREMENT,
-        stylesheet_id int(255) NOT NULL AUTO_INCREMENT,
+        stylesheet_id int(255) NOT NULL,
         selector longtext NOT NULL,
         comment longtext,
         custom_code longtext,
