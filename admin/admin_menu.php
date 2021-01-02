@@ -168,6 +168,16 @@ function jcs_cucj_menu_page_css_files_callback( $submenu_page ) {
 add_action( 'admin_footer', 'jcs_cucj_admin_menu_css_files_render_view_js' ); // Write our JS below here
 function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
 	<script type="text/javascript" >
+        function jcs_cucj_delete_css_file(id) {
+            var data = {
+				'action': 'jcs_cucj_delete_css_file',
+                'id': id
+			};
+
+			// since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
+			jQuery.post(ajaxurl, data, null);
+        }
+
 		function jcs_cucj_menu_render(content) {
 			jQuery("#jcs_cucj_admin_menu_view_sockel").html(content);
 		}
@@ -188,11 +198,20 @@ function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
 }
 
 /**
+ * == axaj response functions ==
+ */
+
+/**
  * ajax response function, calls the functions to render a certain view
  */
 add_action( 'wp_ajax_cs_cucj_admin_menu_render_view', 'cs_cucj_admin_menu_render_view' );
 function cs_cucj_admin_menu_render_view() {
 	global $wpdb;
+
+    if ( !current_user_can( 'manage_options' ) ) {
+        echo "Access denied!";
+        wp_die(); // this is required to terminate immediately and return a proper response
+    }
 
     switch ($_POST['viewName']) {
         case 'css_files_list_files':
@@ -220,6 +239,30 @@ function cs_cucj_admin_menu_render_view() {
 
 	wp_die(); // this is required to terminate immediately and return a proper response
 }
+
+/**
+ * ajax function to delete css files from database
+ */
+add_action( 'wp_ajax_jcs_cucj_delete_css_file', 'jcs_cucj_delete_css_file' );
+function jcs_cucj_delete_css_file() {
+    global $wpdb;
+
+    if ( !current_user_can( 'manage_options' ) ) {
+        echo "Access denied!";
+        wp_die(); // this is required to terminate immediately and return a proper response
+    }
+
+    if( !empty( $_POST[ 'id' ] ) ) {
+        $query = "DELETE FROM " . $wpdb->prefix . "jcs_cucj_css_sheets WHERE id LIKE " . $_POST[ 'id' ];
+        $wpdb->get_results( $query );
+    }
+
+    wp_die(); // this is required to terminate immediately and return a proper response
+}
+
+/**
+ * == admin menu render functions ==
+ */
 
 /**
  * Renders a css_files_list_files view
@@ -277,14 +320,22 @@ function cs_cucj_css_files_list_files_render_view( $viewData ) {
 function cs_cucj_css_files_new_file_render_view( $viewData ) {
     ?>
         <div class="wrap">
-            <h1>Create new CSS file</h1>
-            <?php
-                if ( current_user_can( 'manage_options' ) ) {
-                    echo "Ja kann er.";
-                } else {
-                    echo "Zugriff verweigert!";
-                }
-            ?>
+            <h1 class="jcs_cucj_view-title">Create new CSS file</h1>
+            <form>
+                <label for="name">
+                    name
+                    <input type="text" id="name" name="name">
+                </label>
+                <label for="description">
+                    description
+                    <textarea id="description" name="description" rows="5" cols="40"></textarea>
+                </label>
+                <label for="media_query">
+                    media_query
+                    <input type="text" id="media_query" name="media_query">
+                </label>
+                <?php submit_button(); ?>
+            </form>
         </div>
     <?php
 }
