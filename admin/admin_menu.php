@@ -260,7 +260,7 @@ function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
             var custom_code = '';
 
             if(editor != null) {
-                custom_code = editor.getValue();
+                custom_code = editor.codemirror.getValue();
             }
 
             var data = {
