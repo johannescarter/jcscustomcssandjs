@@ -859,11 +859,13 @@ function cs_cucj_css_files_list_entries_render_view( $id ) {
                                                             $custom_code = explode( PHP_EOL, $row->custom_code );
                                                             $is_first = true;
                                                             foreach ($custom_code as $code) {
-                                                                if($is_first) {
-                                                                    echo $code;
-                                                                    $is_first = false;
-                                                                } else {
-                                                                    echo '<br/>' . $code;
+                                                                if($code != '') {
+                                                                    if($is_first) {
+                                                                        echo $code;
+                                                                        $is_first = false;
+                                                                    } else {
+                                                                        echo '<br/>' . $code;
+                                                                    }
                                                                 }
                                                             }
                                                         ?>
