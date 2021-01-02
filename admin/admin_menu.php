@@ -34,7 +34,10 @@ add_action('admin_enqueue_scripts', 'codemirror_enqueue_scripts');
 
 function codemirror_enqueue_scripts($hook) {
     $cm_settings['codeEditor'] = wp_enqueue_code_editor(array('type' => 'text/css'));
-    wp_localize_script('jquery', 'cm_settings', $cm_settings);
+    $var = array(
+        'cm_settings'   => $cm_settings
+    );
+    wp_localize_script('jquery', 'cm_settings', $var);
 
     wp_enqueue_script('wp-theme-plugin-editor');
     wp_enqueue_style('wp-codemirror');
@@ -297,7 +300,7 @@ function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
 
 			jQuery.post(ajaxurl, data, function(response) {
 				jcs_cucj_menu_render(response);
-                editor = wp.codeEditor.initialize(jQuery('#fancy-textarea'), cm_settings);
+                editor = wp.codeEditor.initialize(jQuery('#fancy-textarea'), cm_settings.cm_settings);
 			});
 		}
 	</script> <?php
