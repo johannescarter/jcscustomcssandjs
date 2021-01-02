@@ -234,6 +234,8 @@ function cs_cucj_admin_menu_render_view() {
             cs_cucj_css_files_list_files_render_view($_POST['viewData']);
             break;
         case 'css_files_new_file':
+            echo "new file view";
+            wp_die();
             cs_cucj_css_files_new_file_render_view($_POST['viewData']);
             break;
         case 'css_files_edit_file':
