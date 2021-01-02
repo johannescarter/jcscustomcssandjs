@@ -305,7 +305,7 @@ function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
         /**
          * update css entry and switch to entry list view
          */
-        function jcs_cucj_update_css_entry_and_close( entryId ) {
+        function jcs_cucj_update_css_entry_and_close( entryId, parentId ) {
             var formData = jQuery('form').serializeArray();
 
             var custom_code = '';
@@ -323,7 +323,7 @@ function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
             };
 
             jQuery.post(ajaxurl, data, function(response) {
-                jcs_cucj_menu_get_view('css_files_list_entries', fileId);
+                jcs_cucj_menu_get_view('css_files_list_entries', parentId);
             });
         }
 
@@ -1035,7 +1035,7 @@ function cs_cucj_css_files_edit_entry_render_view( $entryId, $parentId ) {
                                     jcs_cucj_echo_button(
                                         'Save and close',
                                         'submit',
-                                        "jcs_cucj_update_css_entry_and_close(".$parentId.");"
+                                        "jcs_cucj_update_css_entry_and_close(".$entryId.", ".$parentId.");"
                                     );
                                     jcs_cucj_echo_button(
                                         'Cancel',
