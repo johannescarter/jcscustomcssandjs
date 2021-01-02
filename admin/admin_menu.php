@@ -205,6 +205,8 @@ function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
 				'view_data': viewData
 			};
 
+            console.log("sending request: " + data);
+
 			// since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
 			jQuery.post(ajaxurl, data, function(response) {
 				jcs_cucj_menu_render(response);
