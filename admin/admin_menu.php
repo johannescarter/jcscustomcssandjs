@@ -255,7 +255,7 @@ function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
         function jcs_cucj_create_css_entry_and_close( fileId ) {
             var formData = jQuery('form').serializeArray();
 
-            var editor = wp.codeEditor.initialize(jQuery('#fancy-textarea'), my_var.cm_settings);
+            var editor = wp.codeEditor.initialize(jQuery('#fancy-textarea'), cm_settings);
 
             var data = {
                 'action': 'jcs_cucj_create_css_entry',
