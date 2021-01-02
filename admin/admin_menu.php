@@ -429,7 +429,11 @@ function cs_cucj_css_files_list_files_render_view() {
                                         jcs_cucj_echo_button(
                                             'edit entries',
                                             'button',
-                                            "jcs_cucj_menu_get_view('css_files_list_entries', ".$row->id.");"
+                                            "jcs_cucj_menu_get_view('css_files_list_entries', ".$row->id.");",
+                                            '',
+                                            false,
+                                            false,
+                                            'jcs_cucj_button'
                                         );
                                         jcs_cucj_echo_button(
                                             'edit file',
