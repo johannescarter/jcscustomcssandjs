@@ -304,7 +304,7 @@ function jcs_cucj_create_css_file() {
  * Renders a css_files_list_files view
  * @param viewData  mixed Array containing any view parameter
  */
-function cs_cucj_css_files_list_files_render_view( $viewData ) {
+function cs_cucj_css_files_list_files_render_view( $viewData = null ) {
     ?>
         <div class="wrap">
             <h1 class="jcs_cucj_view-title">List of all CSS files</h1>
