@@ -95,6 +95,10 @@
     align-items: center;
 }
 
+.jcs_cucj_list-item button {
+    padding-left: 10px;
+}
+
 .jcs_cucj_list-item-media_query {
     padding-left: 5px;
     color: #777;
