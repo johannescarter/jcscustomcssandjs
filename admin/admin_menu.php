@@ -282,7 +282,7 @@ function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
         /**
          * update css entry and switch to entry list view
          */
-        function jcs_cucj_update_css_entry( fileId ) {
+        function jcs_cucj_update_css_entry( entryId ) {
             var formData = jQuery('form').serializeArray();
 
             var custom_code = '';
@@ -293,10 +293,10 @@ function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
 
             var data = {
                 'action': 'jcs_cucj_update_css_entry',
+                'id': entryId,
                 'selector': formData[0].value,
                 'comment': formData[1].value,
-                'custom_code': custom_code,
-                'stylesheet_id': fileId
+                'custom_code': custom_code
             };
 
             jQuery.post(ajaxurl, data, null);
@@ -305,7 +305,7 @@ function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
         /**
          * update css entry and switch to entry list view
          */
-        function jcs_cucj_update_css_entry_and_close( fileId ) {
+        function jcs_cucj_update_css_entry_and_close( entryId ) {
             var formData = jQuery('form').serializeArray();
 
             var custom_code = '';
@@ -316,10 +316,10 @@ function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
 
             var data = {
                 'action': 'jcs_cucj_update_css_entry',
+                'id': entryId,
                 'selector': formData[0].value,
                 'comment': formData[1].value,
-                'custom_code': custom_code,
-                'stylesheet_id': fileId
+                'custom_code': custom_code
             };
 
             jQuery.post(ajaxurl, data, function(response) {
@@ -549,21 +549,10 @@ function jcs_cucj_update_css_entry() {
         wp_die(); // this is required to terminate immediately and return a proper response
     }
 
-    if( !empty( $_POST[ 'stylesheet_id' ] ) && !empty( $_POST[ 'selector' ] ) ) {
+    if( !empty( $_POST[ 'id' ] ) ) {
         $update = '';
         $is_first = true;
-        if( $_POST[ 'stylesheet_id' ] ) {
-            $update .= "stylesheet_id = '" . esc_sql( $_POST[ 'stylesheet_id' ] ) . "'";
-
-            if( $is_first ) {
-                $is_first = false;
-            }
-        }
         if( $_POST[ 'selector' ] ) {
-            if( !$is_first ) {
-                $update .= ', ';
-            }
-
             $update .= "selector = '" . esc_sql( $_POST[ 'selector' ] ) . "'";
 
             if( $is_first ) {
