@@ -152,6 +152,8 @@
 .jcs_cucj_list-item-comment {
     color: #006799;
     font-weight: bold;
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
 
 .jcs_cucj_list-item-css-code {
