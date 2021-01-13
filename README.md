@@ -3,7 +3,7 @@
 ## Meta information
 description: Wordpress Plugin to easily add custom CSS and JavaScript code in a simple and organized way.  
 author: JohannesCarter  
-version: 0.0.2  
+version: 0.1.0  
 
 ## Wiki
 
