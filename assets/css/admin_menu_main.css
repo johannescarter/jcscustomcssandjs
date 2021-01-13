@@ -1,0 +1,178 @@
+.vertical-space {
+    height: 30px;
+}
+
+.justify-content-flex-end {
+    justify-content: flex-end;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.row {
+    display: flex;
+    width: 100%;
+}
+
+/**
+ * == columns==
+ */
+
+.col-1 {
+    width: 8.3333%;
+}
+
+.col-2 {
+    width: 16.6666%;
+}
+
+.col-3 {
+    width: 25%;
+}
+
+.col-4 {
+    width: 33.3333%;
+}
+
+.col-5 {
+    width: 41.6666%;
+}
+
+.col-6 {
+    width: 50%;
+}
+
+.col-7 {
+    width: 58.3333%;
+}
+
+.col-8 {
+    width: 66.6666%;
+}
+
+.col-9 {
+    width: 75%;
+}
+
+.col-10 {
+    width: 83.3333%;
+}
+
+.col-11 {
+    width: 91.6666%;
+}
+
+.col-12 {
+    width: 100%;
+}
+
+/**
+ * == general view ==
+ */
+
+.jcs_cucj_view-title {
+    margin-bottom: 1.5rem !important;
+}
+
+.jcs_cucj_view-footer {
+    margin-top: 15px;
+}
+
+/**
+ * == list ==
+ */
+
+.jcs_cucj_list {
+    width: 800px;
+    background-color: #fff;
+    font-size: 15px;
+    border-left: 1px solid #ccd0d4;
+    border-right: 1px solid #ccd0d4;
+}
+
+.jcs_cucj_list-item:nth-child(odd) {
+    background-color: #f8f8f8;
+}
+
+.jcs_cucj_list-item > div {
+    padding: 8px 10px;
+    display: flex;
+    align-items: center;
+}
+
+.jcs_cucj_list-item button {
+    margin-left: 10px;
+}
+
+.jcs_cucj_list-item-name {
+    color: #006799;
+    font-weight: 500;
+}
+
+.jcs_cucj_list-item-media_query {
+    padding-left: 5px;
+    color: #999;
+}
+
+.jcs_cucj_list-header,
+.jcs_cucj_list-footer {
+    width: 800px;
+    background-color: #fff;
+    font-size: 15px;
+    border: 1px solid #ccd0d4;
+}
+
+.jcs_cucj_list-header > div,
+.jcs_cucj_list-footer > div {
+    padding: 8px 10px;
+}
+
+/**
+ * == input form ==
+ */
+
+.jcs_cucj_form .label {
+    font-weight: bold;
+    min-width: 200px;
+}
+
+.jcs_cucj_form tbody {
+    margin-bottom: 1.5rem;
+}
+
+.jcs_cucj_form input {
+    width: 500px;
+}
+
+.jcs_cucj_form input,
+.jcs_cucj_form textarea {
+    max-width: 100%;
+}
+
+/**
+ * == entries list ==
+ */
+
+.jcs_cucj_list-item-comment {
+    color: #006799;
+    font-weight: 500;
+    margin-top: 0px;
+    margin-bottom: 5px;
+}
+
+.jcs_cucj_list-item-css-code {
+    padding: 5px 10px;
+    background-color: #eee;
+    border-radius: 4px;
+    box-shadow: inset 0 0.5px 1px rgba(0,0,0,.1);
+    border: 1px solid #ddd;
+    font-size: 13px;
+    line-height: 1.5;
+    font-family: monospace;
+    color: #555;
+}
+
+.jcs_cucj_list-item-css-code_inner {
+    padding-left: 20px;
+}
