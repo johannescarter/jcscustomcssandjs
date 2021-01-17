@@ -26,7 +26,10 @@ require plugin_dir_path( __FILE__ ) . '/config/config.php';
 if ( is_admin() ) {
 	require plugin_dir_path( __FILE__ ) . '/admin/admin_functions.php';
 	require plugin_dir_path( __FILE__ ) . '/admin/admin_menu.php';
-	wp_enqueue_style( 'jcs_cucj_css_main', plugin_dir_url( __FILE__ ) . '/assets/css/admin_menu_main.css' );
+	$currentScreen = get_current_screen();
+    if( strpos( $currentScreen->id, 'jcs_cucj_' ) !== false ) {
+        wp_enqueue_style( 'jcs_cucj_css_main', plugin_dir_url( __FILE__ ) . '/assets/css/admin_menu_main.css' );
+    }
 }
 require plugin_dir_path( __FILE__ ) . '/public/public_functions.php';
 require plugin_dir_path( __FILE__ ) . '/public/public_shortcodes.php';
