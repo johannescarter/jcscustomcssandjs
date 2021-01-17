@@ -10,6 +10,8 @@ version: 0.1.0
  [Goto the plugins wiki.](https://github.com/johannescarter/jcscustomcssandjs/wiki)
 
 ## Changelog
+### 0.2.0
+* added a new db table for pages to files relation
 ### 0.1.0
 * menu settings category added
 * settings page added

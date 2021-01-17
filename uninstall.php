@@ -12,4 +12,5 @@ global $wpdb;
 $wpdb->query('DROP TABLE IF EXISTS ' . $wpdb->prefix . 'jcs_cucj_css_sheets');
 $wpdb->query('DROP TABLE IF EXISTS ' . $wpdb->prefix . 'jcs_cucj_css_entries');
 $wpdb->query('DROP TABLE IF EXISTS ' . $wpdb->prefix . 'jcs_cucj_js_files');
+$wpdb->query('DROP TABLE IF EXISTS ' . $wpdb->prefix . 'jcs_cucj_files_pages_rel');
 ?>

@@ -11,8 +11,8 @@ if ( ! defined( 'WPINC' ) ) {
 /**
  * Register our stylesheet.
  */
-function wpdocs_plugin_admin_init() {
-    wp_register_style( 'wpdocsPluginStylesheet', plugins_url( 'stylesheet.css', __FILE__ ) );
+function jcs_cucj_render_css() {
+    //wp_register_style( 'wpdocsPluginStylesheet', plugins_url( 'stylesheet.css', __FILE__ ) );
 }
 
 /**
@@ -62,6 +62,18 @@ function jcs_cucj_activate() {
         description longtext,
         custom_code longtext,
         PRIMARY KEY (id)
+    ) $charset_collate;";
+
+    require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+    dbDelta( $sql );
+
+    // create db table for css and js files to pages link
+    $table_name = $wpdb->prefix . 'jcs_cucj_files_pages_rel';
+
+    $sql = "CREATE TABLE $table_name (
+        page_id bigint(20) NOT NULL,
+        file_id int(255) NOT NULL,
+        file_type varchar(3) NOT NULL
     ) $charset_collate;";
 
     require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
