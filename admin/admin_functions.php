@@ -9,13 +9,6 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 /**
- * Register our stylesheet.
- */
-function jcs_cucj_render_css() {
-    //wp_register_style( 'wpdocsPluginStylesheet', plugins_url( 'stylesheet.css', __FILE__ ) );
-}
-
-/**
  * This function is called, when the plugin is activated.
  */
 function jcs_cucj_activate() {
