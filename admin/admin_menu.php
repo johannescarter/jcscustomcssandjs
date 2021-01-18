@@ -802,10 +802,34 @@ function cs_cucj_css_files_edit_file_render_view( $id ) {
                         </tr>
                         <tr>
                             <td class="label">
-                                <label for="media_query">media_query</label>
+                                <label for="media_query">media query</label>
                             </td>
                             <td>
                                 <input type="text" id="media_query" name="media_query" value="<?= esc_attr( $row->media_query ); ?>">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label">
+                                <label>Pages</label>
+                            </td>
+                            <td>
+                                <div class="jcs_cucj_admin_menu_pages_rel">
+                                    <label>
+                                        All pages
+                                        <input type="checkbox" name="jcs_cucj_pages_rel_page_all">
+                                    </label>
+                                    <?php
+                                        $tmp_all_pages = get_pages();
+                                        foreach ($tmp_all_pages as $page) {
+                                            ?>
+                                            <label>
+                                                <?= $page->post_title;?>
+                                                <input type="checkbox" name="jcs_cucj_pages_rel_page_<?= $page->ID; ?>">
+                                            </label>
+                                            <?php
+                                        }
+                                    ?>
+                                </div>
                             </td>
                         </tr>
                         <tr class="vertical-space"></tr>
