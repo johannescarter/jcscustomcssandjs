@@ -26,13 +26,20 @@ require plugin_dir_path( __FILE__ ) . '/config/config.php';
 if ( is_admin() ) {
 	require plugin_dir_path( __FILE__ ) . '/admin/admin_functions.php';
 	require plugin_dir_path( __FILE__ ) . '/admin/admin_menu.php';
-	$currentScreen = get_current_screen();
+    add_action( 'current_screen', 'enqueue_jcs_cucj_css_main' );
+}
+require plugin_dir_path( __FILE__ ) . '/public/public_functions.php';
+require plugin_dir_path( __FILE__ ) . '/public/public_shortcodes.php';
+
+/**
+ * Run code on the plugins admin menu page
+ */
+function enqueue_jcs_cucj_css_main() {
+    $currentScreen = get_current_screen();
     if( strpos( $currentScreen->id, 'jcs_cucj_' ) !== false ) {
         wp_enqueue_style( 'jcs_cucj_css_main', plugin_dir_url( __FILE__ ) . '/assets/css/admin_menu_main.css' );
     }
 }
-require plugin_dir_path( __FILE__ ) . '/public/public_functions.php';
-require plugin_dir_path( __FILE__ ) . '/public/public_shortcodes.php';
 
 // register plugin activation function
 register_activation_hook( __FILE__, 'jcs_cucj_activate' );
