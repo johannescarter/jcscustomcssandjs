@@ -823,8 +823,8 @@ function cs_cucj_css_files_edit_file_render_view( $id ) {
                                         foreach ($tmp_all_pages as $page) {
                                             ?>
                                             <label>
-                                                <?= $page->post_title;?>
                                                 <input type="checkbox" name="jcs_cucj_pages_rel_page_<?= $page->ID; ?>">
+                                                <?= $page->post_title;?>
                                             </label>
                                             <?php
                                         }

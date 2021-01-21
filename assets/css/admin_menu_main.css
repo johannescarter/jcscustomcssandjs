@@ -150,6 +150,10 @@
     max-width: 100%;
 }
 
+.jcs_cucj_form input[type="checkbox"] {
+    width: auto;
+}
+
 /**
  * == entries list ==
  */
