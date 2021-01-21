@@ -815,8 +815,8 @@ function cs_cucj_css_files_edit_file_render_view( $id ) {
                             <td>
                                 <div class="jcs_cucj_admin_menu_pages_rel">
                                     <label>
-                                        All pages
                                         <input type="checkbox" name="jcs_cucj_pages_rel_page_all">
+                                        All pages
                                     </label>
                                     <?php
                                         $tmp_all_pages = get_pages();

@@ -155,6 +155,17 @@
 }
 
 /**
+ * == css file edit page
+ */
+
+.jcs_cucj_admin_menu_pages_rel {
+    display: flex;
+    flex-direction: column;
+    max-height: 300px;
+    overflow-y: scroll;
+}
+
+/**
  * == entries list ==
  */
 
