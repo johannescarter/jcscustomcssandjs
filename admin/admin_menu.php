@@ -784,7 +784,7 @@ function cs_cucj_css_files_new_file_render_view() {
     ?>
         <div class="wrap">
             <h1 class="jcs_cucj_view-title">Create new CSS file</h1>
-            <form class="jcs_cucj_form">
+            <form class="jcs_cucj_form" method="post">
                 <table>
                     <tbody>
                         <tr>
