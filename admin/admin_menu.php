@@ -460,7 +460,8 @@ function jcs_cucj_create_css_file() {
                   );";
         $wpdb->get_results( $query );
 
-        if( isset( $_POST[ 'jcs_cucj_pages_rel_page_all' ] ) ) {
+        //if( isset( $_POST[ 'jcs_cucj_pages_rel_page_all' ] ) ) {
+        if( isset( $_POST[ 'test_input' ] ) ) {
             $query = "INSERT INTO " . $wpdb->prefix . "jcs_cucj_files_pages_rel
                       (page_id, file_id, file_type)
                       VALUES
