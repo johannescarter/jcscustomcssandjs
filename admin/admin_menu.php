@@ -461,7 +461,7 @@ function jcs_cucj_create_css_file() {
         $wpdb->get_results( $query );
 
         //if( isset( $_POST[ 'jcs_cucj_pages_rel_page_all' ] ) ) {
-        if( isset( $_POST[ 'name' ] ) ) {
+        if( isset( $_POST[ 'testinput' ] ) ) {
             $query = "INSERT INTO " . $wpdb->prefix . "jcs_cucj_files_pages_rel
                       (page_id, file_id, file_type)
                       VALUES
@@ -814,11 +814,18 @@ function cs_cucj_css_files_new_file_render_view() {
                         </tr>
                         <tr>
                             <td class="label">
+                                <label for="testinput">testinput</label>
+                            </td>
+                            <td>
+                                <input type="text" id="testinput" name="testinput">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label">
                                 <label>Pages</label>
                             </td>
                             <td>
                                 <div class="jcs_cucj_admin_menu_pages_rel">
-                                    <input type="text" id="test_input" name="test_input" value="test">
                                     <label>
                                         All pages
                                     </label>
