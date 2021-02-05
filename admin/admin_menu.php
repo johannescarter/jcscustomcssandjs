@@ -429,7 +429,7 @@ function jcs_cucj_create_css_file() {
                   (name, description, media_query)
                   VALUES
                   (
-                      '" . esc_sql( $_POST[ 'name' ] ) . esc_sql( serialize( $_POST[ 'jcs_cucj_pages_rel_page_all' ] ) ) . "',
+                      '" . esc_sql( $_POST[ 'name' ] ) . esc_sql( $_POST[ 'jcs_cucj_pages_rel_page_all' ] ) . "',
                       '" . esc_sql( $_POST[ 'description' ] ) . "',
                       '" . esc_sql( $_POST[ 'media_query' ] ) . "'
                   );";
@@ -439,6 +439,7 @@ function jcs_cucj_create_css_file() {
         $result = $wpdb->get_results( $query );
         $file_id = $result[0]->id;
 
+        // TODO WIP
         // update page_css_file_rel in db
         if( $_POST[ 'jcs_cucj_pages_rel_page_all' ] == "on" ) {
             $query = "INSERT INTO " . $wpdb->prefix . "jcs_cucj_files_pages_rel
