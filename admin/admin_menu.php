@@ -789,7 +789,7 @@ function cs_cucj_css_files_new_file_render_view() {
                             <td>
                                 <div class="jcs_cucj_admin_menu_pages_rel">
                                     <label>
-                                        <input type="checkbox" name="jcs_cucj_pages_rel_page_all">
+                                        <input type="checkbox" name="jcs_cucj_pages_rel_page_all" value="on">
                                         All pages
                                     </label>
                                     <?php
@@ -879,7 +879,7 @@ function cs_cucj_css_files_edit_file_render_view( $id ) {
                             <td>
                                 <div class="jcs_cucj_admin_menu_pages_rel">
                                     <label>
-                                        <input type="checkbox" name="jcs_cucj_pages_rel_page_all">
+                                        <input type="checkbox" name="jcs_cucj_pages_rel_page_all" value="on">
                                         All pages
                                     </label>
                                     <?php
