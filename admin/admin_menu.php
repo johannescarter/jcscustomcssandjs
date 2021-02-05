@@ -818,9 +818,9 @@ function cs_cucj_css_files_new_file_render_view() {
                             <td>
                                 <div class="jcs_cucj_admin_menu_pages_rel">
                                     <label>
-                                        <input type="text" id="jcs_cucj_pages_rel_page_all" name="jcs_cucj_pages_rel_page_all" value="on">
                                         All pages
                                     </label>
+                                    <input type="text" id="jcs_cucj_pages_rel_page_all" name="jcs_cucj_pages_rel_page_all" value="on">
                                     <?php
                                         $tmp_all_pages = get_pages();
                                         foreach ($tmp_all_pages as $page) {
