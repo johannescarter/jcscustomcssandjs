@@ -440,7 +440,7 @@ function jcs_cucj_create_css_file() {
         $file_id = $result[0]->id;
 
         // update page_css_file_rel in db
-        if( esc_sql( $_POST[ 'jcs_cucj_pages_rel_page_all' ] ) == "on" ) {
+        if( $_POST[ 'jcs_cucj_pages_rel_page_all' ] == "on" ) {
             $query = "INSERT INTO " . $wpdb->prefix . "jcs_cucj_files_pages_rel
                       (page_id, file_id, file_type)
                       VALUES
@@ -796,7 +796,7 @@ function cs_cucj_css_files_new_file_render_view() {
                                         foreach ($tmp_all_pages as $page) {
                                             ?>
                                             <label>
-                                                <input type="checkbox" name="jcs_cucj_pages_rel_page_<?= $page->ID; ?>">
+                                                <input type="checkbox" name="jcs_cucj_pages_rel_page_<?= $page->ID; ?>" value="on">
                                                 <?= $page->post_title;?>
                                             </label>
                                             <?php
@@ -886,7 +886,7 @@ function cs_cucj_css_files_edit_file_render_view( $id ) {
                                         foreach ($tmp_all_pages as $page) {
                                             ?>
                                             <label>
-                                                <input type="checkbox" name="jcs_cucj_pages_rel_page_<?= $page->ID; ?>">
+                                                <input type="checkbox" name="jcs_cucj_pages_rel_page_<?= $page->ID; ?>" value="on">
                                                 <?= $page->post_title;?>
                                             </label>
                                             <?php
