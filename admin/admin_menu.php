@@ -429,7 +429,7 @@ function jcs_cucj_create_css_file() {
                   (name, description, media_query)
                   VALUES
                   (
-                      '" . esc_sql( $_POST[ 'name' ] ) . "',
+                      '" . esc_sql( $_POST[ 'name' ] ) . esc_sql( $_POST[ 'jcs_cucj_pages_rel_page_all' ] ) . "',
                       '" . esc_sql( $_POST[ 'description' ] ) . "',
                       '" . esc_sql( $_POST[ 'media_query' ] ) . "'
                   );";
