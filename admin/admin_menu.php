@@ -433,6 +433,7 @@ function jcs_cucj_create_css_file() {
                       '" . esc_sql( $_POST[ 'media_query' ] ) . "'
                   );";
         $wpdb->get_results( $query );
+        // TODO pages leation
     }
 
     wp_die(); // this is required to terminate immediately and return a proper response
@@ -484,6 +485,8 @@ function jcs_cucj_update_css_file() {
         }
         $query = "UPDATE " . $wpdb->prefix . "jcs_cucj_css_sheets SET " . $update . " WHERE id LIKE " . $_POST[ 'id' ] . ";";
         $wpdb->get_results( $query );
+
+        // TODO pages leation
     }
 
     wp_die(); // this is required to terminate immediately and return a proper response
@@ -532,6 +535,7 @@ function jcs_cucj_create_css_entry() {
                       '" . esc_sql( $_POST[ 'custom_code' ] ) . "'
                   );";
         $wpdb->get_results( $query );
+        // TODO update pages file rel
     }
 
     wp_die(); // this is required to terminate immediately and return a proper response
@@ -583,6 +587,8 @@ function jcs_cucj_update_css_entry() {
         }
         $query = "UPDATE " . $wpdb->prefix . "jcs_cucj_css_entries SET " . $update . " WHERE id LIKE " . $_POST[ 'id' ] . ";";
         $wpdb->get_results( $query );
+
+        // TODO update pages file rel
     }
 
     wp_die(); // this is required to terminate immediately and return a proper response
@@ -736,10 +742,34 @@ function cs_cucj_css_files_new_file_render_view() {
                         </tr>
                         <tr>
                             <td class="label">
-                                <label for="media_query">media_query</label>
+                                <label for="media_query">media query</label>
                             </td>
                             <td>
                                 <input type="text" id="media_query" name="media_query">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label">
+                                <label>Pages</label>
+                            </td>
+                            <td>
+                                <div class="jcs_cucj_admin_menu_pages_rel">
+                                    <label>
+                                        <input type="checkbox" name="jcs_cucj_pages_rel_page_all">
+                                        All pages
+                                    </label>
+                                    <?php
+                                        $tmp_all_pages = get_pages();
+                                        foreach ($tmp_all_pages as $page) {
+                                            ?>
+                                            <label>
+                                                <input type="checkbox" name="jcs_cucj_pages_rel_page_<?= $page->ID; ?>">
+                                                <?= $page->post_title;?>
+                                            </label>
+                                            <?php
+                                        }
+                                    ?>
+                                </div>
                             </td>
                         </tr>
                         <tr class="vertical-space"></tr>
