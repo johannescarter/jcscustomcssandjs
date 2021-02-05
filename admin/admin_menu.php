@@ -435,19 +435,29 @@ function jcs_cucj_create_css_file() {
                   );";
         $wpdb->get_results( $query );
 
-        $query = "SELECT LAST_INSERT_ID() as id FROM " . $wpdb->prefix . "jcs_cucj_css_sheets;";
-        $result = $wpdb->get_results( $query );
-        $file_id = $result[0]->id;
+        //$query = "SELECT LAST_INSERT_ID() as id FROM " . $wpdb->prefix . "jcs_cucj_css_sheets;";
+        //$result = $wpdb->get_results( $query );
+        //$file_id = $result[0]->id;
 
         // TODO WIP
         // update page_css_file_rel in db
+        $query = "INSERT INTO " . $wpdb->prefix . "jcs_cucj_files_pages_rel
+                  (page_id, file_id, file_type)
+                  VALUES
+                  (
+                      1,
+                      1,
+                      'css'
+                  );";
+        $wpdb->get_results( $query );
+        
         if( $_POST[ 'jcs_cucj_pages_rel_page_all' ] == "on" ) {
             $query = "INSERT INTO " . $wpdb->prefix . "jcs_cucj_files_pages_rel
                       (page_id, file_id, file_type)
                       VALUES
                       (
-                          0,
-                          0,
+                          1,
+                          1,
                           'css'
                       );";
             /*
