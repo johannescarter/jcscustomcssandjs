@@ -412,7 +412,7 @@ function cs_cucj_admin_menu_render_view() {
 }
 
 /**
- * ajax function to insert a new css files into the database
+ * ajax function to insert a new css file into the database
  */
 add_action( 'wp_ajax_jcs_cucj_create_css_file', 'jcs_cucj_create_css_file' );
 function jcs_cucj_create_css_file() {
@@ -424,6 +424,7 @@ function jcs_cucj_create_css_file() {
     }
 
     if( !empty( $_POST[ 'name' ] ) ) {
+        // save file infos to db
         $query = "INSERT INTO " . $wpdb->prefix . "jcs_cucj_css_sheets
                   (name, description, media_query)
                   VALUES
@@ -433,7 +434,39 @@ function jcs_cucj_create_css_file() {
                       '" . esc_sql( $_POST[ 'media_query' ] ) . "'
                   );";
         $wpdb->get_results( $query );
-        // TODO pages leation
+
+        $query = "SELECT LAST_INSERT_ID() as id FROM " . $wpdb->prefix . "jcs_cucj_css_sheets;";
+        $result = $wpdb->get_results( $query );
+        $file_id = $result[0]->id;
+
+        // update page_css_file_rel in db
+        if( esc_sql( $_POST[ 'jcs_cucj_pages_rel_page_all' ] ) == "on" ) {
+            $query = "INSERT INTO " . $wpdb->prefix . "jcs_cucj_files_pages_rel
+                      (page_id, file_id, file_type)
+                      VALUES
+                      (
+                          -1,
+                          " . esc_sql( $file_id ) . ",
+                          'css'
+                      );";
+            $wpdb->get_results( $query );
+        } else {
+            $tmp_all_pages = get_pages();
+            foreach ( $tmp_all_pages as $page ) {
+                $tmp_input_name = 'jcs_cucj_pages_rel_page_' . $page->ID;
+                if ( $_POST[ '$tmp_input_name' ] == "on" ) {
+                    $query = "INSERT INTO " . $wpdb->prefix . "jcs_cucj_files_pages_rel
+                              (page_id, file_id, file_type)
+                              VALUES
+                              (
+                                  " . esc_sql( $page->ID ) . ",
+                                  " . esc_sql( $file_id ) . ",
+                                  'css'
+                              );";
+                    $wpdb->get_results( $query );
+                }
+            }
+        }
     }
 
     wp_die(); // this is required to terminate immediately and return a proper response
