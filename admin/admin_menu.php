@@ -224,8 +224,6 @@ function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
                 'jcs_cucj_pages_rel_page[]': pages,
             };
 
-            console.log(data);
-
             jQuery.post(ajaxurl, data, function(response) {
                 jcs_cucj_menu_get_view('css_files_list_files');
             });
@@ -452,7 +450,7 @@ function jcs_cucj_create_css_file() {
                   VALUES
                   (
                       '" . esc_sql( $_POST[ 'name' ] ) . "',
-                      '" . esc_sql( $_POST[ 'description' ] ) . 'DEBUG' . esc_sql( serialize( $_POST[ 'jcs_cucj_pages_rel_page' ] ) ) . "',
+                      '" . esc_sql( $_POST[ 'description' ] ) . "',
                       '" . esc_sql( $_POST[ 'media_query' ] ) . "'
                   );";
         $wpdb->get_results( $query );
@@ -461,27 +459,8 @@ function jcs_cucj_create_css_file() {
         $result = $wpdb->get_results( $query );
         $file_id = $result[0]->id;
 
-        // TODO WIP
         // update page_css_file_rel in db
-        $query = "INSERT INTO " . $wpdb->prefix . "jcs_cucj_files_pages_rel
-                  (page_id, file_id, file_type)
-                  VALUES
-                  (
-                      0,
-                      0,
-                      'css'
-                  );";
-        $wpdb->get_results( $query );
-
         if( $_POST[ 'jcs_cucj_pages_rel_page_all' ] == '1' ) {
-            /*$query = "INSERT INTO " . $wpdb->prefix . "jcs_cucj_files_pages_rel
-                      (page_id, file_id, file_type)
-                      VALUES
-                      (
-                          1,
-                          1,
-                          'css'
-                      );";*/
             $query = "INSERT INTO " . $wpdb->prefix . "jcs_cucj_files_pages_rel
                       (page_id, file_id, file_type)
                       VALUES
@@ -492,7 +471,6 @@ function jcs_cucj_create_css_file() {
                       );";
             $wpdb->get_results( $query );
         } else {
-            $i = 1;
             foreach ( $_POST[ 'jcs_cucj_pages_rel_page' ] as $page ) {
                 $query = "INSERT INTO " . $wpdb->prefix . "jcs_cucj_files_pages_rel
                           (page_id, file_id, file_type)
@@ -502,16 +480,7 @@ function jcs_cucj_create_css_file() {
                               " . esc_sql( $file_id ) . ",
                               'css'
                           );";
-                /*$query = "INSERT INTO " . $wpdb->prefix . "jcs_cucj_files_pages_rel
-                          (page_id, file_id, file_type)
-                          VALUES
-                          (
-                              " . esc_sql( $i ) . ",
-                              -2,
-                              'css'
-                          );";*/
                 $wpdb->get_results( $query );
-                $i++;
             }
         }
     }
