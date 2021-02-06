@@ -197,18 +197,31 @@ function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
         function jcs_cucj_create_css_file_and_close() {
             var formData = jQuery('form').serializeArray();
 
-            console.log(jQuery('form'));
-            console.log(formData);
-            console.log(formData[3]);
-            console.log(formData[4]);
-            console.log(formData[5]);
+            var pages = [];
+            var allPages = '0';
+
+            formData.forEach((item, i) => {
+                if(item != null
+                   && item.name != null
+                   && item.value != null
+                ) {
+                    if(item.name == 'jcs_cucj_pages_rel_page') {
+                        pages.push(item.value);
+                    } else if (item.name == 'jcs_cucj_pages_rel_page_all'
+                               && item.value == '1') {
+                        allPages = '1';
+                    }
+                }
+            });
+
 
             var data = {
                 'action': 'jcs_cucj_create_css_file',
                 'name': formData[0].value,
                 'description': formData[1].value,
-                'media_query': formData[2].value
-                // TODO pages übergeben
+                'media_query': formData[2].value,
+                'jcs_cucj_pages_rel_page_all': allPages,
+                'jcs_cucj_pages_rel_page': pages,
             };
 
             jQuery.post(ajaxurl, data, function(response) {
@@ -442,9 +455,9 @@ function jcs_cucj_create_css_file() {
                   );";
         $wpdb->get_results( $query );
 
-        //$query = "SELECT LAST_INSERT_ID() as id FROM " . $wpdb->prefix . "jcs_cucj_css_sheets;";
-        //$result = $wpdb->get_results( $query );
-        //$file_id = $result[0]->id;
+        $query = "SELECT LAST_INSERT_ID() as id FROM " . $wpdb->prefix . "jcs_cucj_css_sheets;";
+        $result = $wpdb->get_results( $query );
+        $file_id = $result[0]->id;
 
         // TODO WIP
         // update page_css_file_rel in db
@@ -457,18 +470,8 @@ function jcs_cucj_create_css_file() {
                       'css'
                   );";
         $wpdb->get_results( $query );
-        $query = "INSERT INTO " . $wpdb->prefix . "jcs_cucj_files_pages_rel
-                  (page_id, file_id, file_type)
-                  VALUES
-                  (
-                      0,
-                      1,
-                      'css'
-                  );";
-        $wpdb->get_results( $query );
 
-        //if( isset( $_POST[ 'jcs_cucj_pages_rel_page_all' ] ) ) {
-        if( isset( $_POST[ 'testinput' ] ) ) {
+        if( isset( $_POST[ 'jcs_cucj_pages_rel_page_all' ] ) ) {
             $query = "INSERT INTO " . $wpdb->prefix . "jcs_cucj_files_pages_rel
                       (page_id, file_id, file_type)
                       VALUES
@@ -489,20 +492,16 @@ function jcs_cucj_create_css_file() {
             */
             $wpdb->get_results( $query );
         } else {
-            $tmp_all_pages = get_pages();
-            foreach ( $tmp_all_pages as $page ) {
-                $tmp_input_name = 'jcs_cucj_pages_rel_page_' . $page->ID;
-                if ( $_POST[ '$tmp_input_name' ] == "on" ) {
-                    $query = "INSERT INTO " . $wpdb->prefix . "jcs_cucj_files_pages_rel
-                              (page_id, file_id, file_type)
-                              VALUES
-                              (
-                                  " . esc_sql( $page->ID ) . ",
-                                  " . esc_sql( $file_id ) . ",
-                                  'css'
-                              );";
-                    $wpdb->get_results( $query );
-                }
+            foreach ( $_POST[ 'jcs_cucj_pages_rel_page' ] as $page ) {
+                $query = "INSERT INTO " . $wpdb->prefix . "jcs_cucj_files_pages_rel
+                          (page_id, file_id, file_type)
+                          VALUES
+                          (
+                              " . esc_sql( $page ) . ",
+                              " . esc_sql( $file_id ) . ",
+                              'css'
+                          );";
+                $wpdb->get_results( $query );
             }
         }
     }
@@ -792,7 +791,7 @@ function cs_cucj_css_files_new_file_render_view() {
     ?>
         <div class="wrap">
             <h1 class="jcs_cucj_view-title">Create new CSS file</h1>
-            <form class="jcs_cucj_form" method="post">
+            <form id="jcs_cucj_form_new_css_file" class="jcs_cucj_form" method="post">
                 <table>
                     <tbody>
                         <tr>
@@ -821,28 +820,20 @@ function cs_cucj_css_files_new_file_render_view() {
                         </tr>
                         <tr>
                             <td class="label">
-                                <label for="testinput">testinput</label>
-                            </td>
-                            <td>
-                                <input type="text" id="testinput" name="testinput">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="label">
                                 <label>Pages</label>
                             </td>
                             <td>
                                 <div class="jcs_cucj_admin_menu_pages_rel">
                                     <label>
+                                        <input type="checkbox" id="jcs_cucj_pages_rel_page_all" name="jcs_cucj_pages_rel_page_all" value="1">
                                         All pages
                                     </label>
-                                    <input type="text" id="jcs_cucj_pages_rel_page_all" name="jcs_cucj_pages_rel_page_all" value="1">
                                     <?php
                                         $tmp_all_pages = get_pages();
                                         foreach ($tmp_all_pages as $page) {
                                             ?>
                                             <label>
-                                                <input type="checkbox" name="jcs_cucj_pages_rel_page[]" value="<?= $page->ID; ?>">
+                                                <input type="checkbox" name="jcs_cucj_pages_rel_page" value="<?= $page->ID; ?>">
                                                 <?= $page->post_title;?>
                                             </label>
                                             <?php
