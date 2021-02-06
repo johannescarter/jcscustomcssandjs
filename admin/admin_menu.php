@@ -197,6 +197,7 @@ function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
         function jcs_cucj_create_css_file_and_close() {
             var formData = jQuery('form').serializeArray();
 
+            console.log(jQuery('form'));
             console.log(formData);
             console.log(formData[3]);
             console.log(formData[4]);
