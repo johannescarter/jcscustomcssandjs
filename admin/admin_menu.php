@@ -498,18 +498,18 @@ function jcs_cucj_create_css_file() {
                           (page_id, file_id, file_type)
                           VALUES
                           (
-                              " . esc_sql( intval( $page ) ) . ",
+                              " . esc_sql( $page ) . ",
                               " . esc_sql( $file_id ) . ",
                               'css'
                           );";
-                $query = "INSERT INTO " . $wpdb->prefix . "jcs_cucj_files_pages_rel
+                /*$query = "INSERT INTO " . $wpdb->prefix . "jcs_cucj_files_pages_rel
                           (page_id, file_id, file_type)
                           VALUES
                           (
                               " . esc_sql( $i ) . ",
                               -2,
                               'css'
-                          );";
+                          );";*/
                 $wpdb->get_results( $query );
                 $i++;
             }
