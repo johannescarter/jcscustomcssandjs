@@ -474,15 +474,14 @@ function jcs_cucj_create_css_file() {
         $wpdb->get_results( $query );
 
         if( $_POST[ 'jcs_cucj_pages_rel_page_all' ] == '1' ) {
-            $query = "INSERT INTO " . $wpdb->prefix . "jcs_cucj_files_pages_rel
+            /*$query = "INSERT INTO " . $wpdb->prefix . "jcs_cucj_files_pages_rel
                       (page_id, file_id, file_type)
                       VALUES
                       (
                           1,
                           1,
                           'css'
-                      );";
-            /*
+                      );";*/
             $query = "INSERT INTO " . $wpdb->prefix . "jcs_cucj_files_pages_rel
                       (page_id, file_id, file_type)
                       VALUES
@@ -491,12 +490,10 @@ function jcs_cucj_create_css_file() {
                           " . esc_sql( $file_id ) . ",
                           'css'
                       );";
-            */
             $wpdb->get_results( $query );
         } else {
             $i = 1;
             foreach ( $_POST[ 'jcs_cucj_pages_rel_page' ] as $page ) {
-                /*
                 $query = "INSERT INTO " . $wpdb->prefix . "jcs_cucj_files_pages_rel
                           (page_id, file_id, file_type)
                           VALUES
@@ -505,16 +502,17 @@ function jcs_cucj_create_css_file() {
                               " . esc_sql( $file_id ) . ",
                               'css'
                           );";
-                */
+                /*
                 $query = "INSERT INTO " . $wpdb->prefix . "jcs_cucj_files_pages_rel
                           (page_id, file_id, file_type)
                           VALUES
                           (
                               " . esc_sql( $i ) . ",
-                              11,
+                              " . esc_sql( $file_id ) . ",
                               'css'
                           );";
                 $wpdb->get_results( $query );
+                */
                 $i++;
             }
         }
