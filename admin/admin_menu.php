@@ -194,6 +194,9 @@ function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
          * == css files ==
          */
 
+        /**
+         * create a new css file and render the css files list view
+         */
         function jcs_cucj_create_css_file_and_close() {
             var formData = jQuery('form').serializeArray();
 
@@ -214,7 +217,6 @@ function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
                 }
             });
 
-
             var data = {
                 'action': 'jcs_cucj_create_css_file',
                 'name': formData[0].value,
@@ -232,12 +234,31 @@ function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
         function jcs_cucj_update_css_file(localId) {
             var formData = jQuery('form').serializeArray();
 
+            var pages = [];
+            var allPages = '0';
+
+            formData.forEach((item, i) => {
+                if(item != null
+                   && item.name != null
+                   && item.value != null
+                ) {
+                    if(item.name == 'jcs_cucj_pages_rel_page') {
+                        pages.push(item.value);
+                    } else if (item.name == 'jcs_cucj_pages_rel_page_all'
+                               && item.value == '1') {
+                        allPages = '1';
+                    }
+                }
+            });
+
             var data = {
                 'action': 'jcs_cucj_update_css_file',
                 'name': formData[0].value,
                 'description': formData[1].value,
                 'media_query': formData[2].value,
-                'id' : localId
+                'id' : localId,
+                'jcs_cucj_pages_rel_page_all': allPages,
+                'jcs_cucj_pages_rel_page[]': pages,
             };
 
             jQuery.post(ajaxurl, data, null);
@@ -535,7 +556,51 @@ function jcs_cucj_update_css_file() {
         $query = "UPDATE " . $wpdb->prefix . "jcs_cucj_css_sheets SET " . $update . " WHERE id LIKE " . $_POST[ 'id' ] . ";";
         $wpdb->get_results( $query );
 
-        // TODO pages leation
+        if( isset( $_POST[ 'jcs_cucj_pages_rel_page_all' ] ) || isset( $_POST[ 'jcs_cucj_pages_rel_page' ] ) ) {
+            $file_id = $_POST[ 'id' ];
+
+            // TODO alle einträge aus pages file rel mit file id
+            $query = "SELECT * FROM " . $wpdb->prefix . "jcs_cucj_files_pages_rel WHERE file_id = " . $file_id . " AND file_type LIKE 'css';";
+            $pages_db = $wpdb->get_results( $query );
+
+            // update page_css_file_rel in db
+            if( $_POST[ 'jcs_cucj_pages_rel_page_all' ] == '1' ) {
+                $query = "INSERT INTO " . $wpdb->prefix . "jcs_cucj_files_pages_rel
+                          (page_id, file_id, file_type)
+                          VALUES
+                          (
+                              -1,
+                              " . esc_sql( $file_id ) . ",
+                              'css'
+                          );";
+                $wpdb->get_results( $query );
+                // DELETE FROM table_name WHERE condition;
+                // TODO loesche alle einträge mit file_id = $file_id aus db ausser wo page_id = -1
+                $query = "DELETE FROM " . $wpdb->prefix . "jcs_cucj_files_pages_rel WHERE (NOT page_id = -1) AND file_id = " . $file_id . " AND file_type LIKE 'css';";
+                $wpdb->get_results( $query );
+            } else {
+                foreach ( $pages_db as $page_db ) {
+                    if ( !( in_array( $pages_db->pages_id, $_POST[ 'jcs_cucj_pages_rel_page' ] ) ) ) {
+                        $query = "DELETE FROM " . $wpdb->prefix . "jcs_cucj_files_pages_rel WHERE page_id = " . $pages_db->pages_id . " AND file_id = " . $file_id . " AND file_type LIKE 'css';";
+                        $wpdb->get_results( $query );
+                    }
+                }
+                foreach ( $_POST[ 'jcs_cucj_pages_rel_page' ] as $page ) {
+                    $query = "INSERT INTO " . $wpdb->prefix . "jcs_cucj_files_pages_rel
+                              (page_id, file_id, file_type)
+                              VALUES
+                              (
+                                  " . esc_sql( $page ) . ",
+                                  " . esc_sql( $file_id ) . ",
+                                  'css'
+                              );";
+                    $wpdb->get_results( $query );
+                }
+                // TODO alle nicht ausgewählten, aber in der DB gespeicherten relationen loeschen
+            }
+        }
+
+        // TODO pages file rel
     }
 
     wp_die(); // this is required to terminate immediately and return a proper response
@@ -894,7 +959,7 @@ function cs_cucj_css_files_edit_file_render_view( $id ) {
                             <td>
                                 <div class="jcs_cucj_admin_menu_pages_rel">
                                     <label>
-                                        <input type="checkbox" name="jcs_cucj_pages_rel_page_all" value="on">
+                                        <input type="checkbox" id="jcs_cucj_pages_rel_page_all" name="jcs_cucj_pages_rel_page_all" value="1">
                                         All pages
                                     </label>
                                     <?php
@@ -902,7 +967,7 @@ function cs_cucj_css_files_edit_file_render_view( $id ) {
                                         foreach ($tmp_all_pages as $page) {
                                             ?>
                                             <label>
-                                                <input type="checkbox" name="jcs_cucj_pages_rel_page_<?= $page->ID; ?>" value="on">
+                                                <input type="checkbox" name="jcs_cucj_pages_rel_page" value="<?= $page->ID; ?>">
                                                 <?= $page->post_title;?>
                                             </label>
                                             <?php
