@@ -197,6 +197,7 @@ function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
         function jcs_cucj_create_css_file_and_close() {
             var formData = jQuery('form').serializeArray();
 
+            console.log(formData);
             console.log(formData[3]);
             console.log(formData[4]);
             console.log(formData[5]);
@@ -745,8 +746,6 @@ function cs_cucj_css_files_list_files_render_view() {
                                             'delete',
                                             'button',
                                             "jcs_cucj_delete_css_file(".$row->id.");jcs_cucj_menu_get_view('css_files_list_files');",
-                                            // TODO loeschen falls Bug behoben
-                                            //"jcs_cucj_delete_css_file(".$row->id.");jcs_cucj_menu_get_view('css_files_edit_file', ".$row->id.");",
                                             '',
                                             false,
                                             false,
