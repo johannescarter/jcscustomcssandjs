@@ -498,7 +498,7 @@ function jcs_cucj_create_css_file() {
                           (page_id, file_id, file_type)
                           VALUES
                           (
-                              " . esc_sql( $page ) . ",
+                              " . esc_sql( intval( $page ) ) . ",
                               " . esc_sql( $file_id ) . ",
                               'css'
                           );";
