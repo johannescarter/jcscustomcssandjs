@@ -224,6 +224,8 @@ function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
                 'jcs_cucj_pages_rel_page': pages,
             };
 
+            console.log(data);
+
             jQuery.post(ajaxurl, data, function(response) {
                 jcs_cucj_menu_get_view('css_files_list_files');
             });
@@ -492,7 +494,9 @@ function jcs_cucj_create_css_file() {
             */
             $wpdb->get_results( $query );
         } else {
+            $i = 1;
             foreach ( $_POST[ 'jcs_cucj_pages_rel_page' ] as $page ) {
+                /*
                 $query = "INSERT INTO " . $wpdb->prefix . "jcs_cucj_files_pages_rel
                           (page_id, file_id, file_type)
                           VALUES
@@ -501,7 +505,17 @@ function jcs_cucj_create_css_file() {
                               " . esc_sql( $file_id ) . ",
                               'css'
                           );";
+                */
+                $query = "INSERT INTO " . $wpdb->prefix . "jcs_cucj_files_pages_rel
+                          (page_id, file_id, file_type)
+                          VALUES
+                          (
+                              " . esc_sql( $i ) . ",
+                              11,
+                              'css'
+                          );";
                 $wpdb->get_results( $query );
+                $i++;
             }
         }
     }
