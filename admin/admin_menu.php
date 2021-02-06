@@ -221,7 +221,7 @@ function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
                 'description': formData[1].value,
                 'media_query': formData[2].value,
                 'jcs_cucj_pages_rel_page_all': allPages,
-                'jcs_cucj_pages_rel_page': pages,
+                'jcs_cucj_pages_rel_page[]': pages,
             };
 
             console.log(data);
