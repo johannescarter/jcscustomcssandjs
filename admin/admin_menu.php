@@ -197,11 +197,16 @@ function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
         function jcs_cucj_create_css_file_and_close() {
             var formData = jQuery('form').serializeArray();
 
+            console.log(formData[3]);
+            console.log(formData[4]);
+            console.log(formData[5]);
+
             var data = {
                 'action': 'jcs_cucj_create_css_file',
                 'name': formData[0].value,
                 'description': formData[1].value,
                 'media_query': formData[2].value
+                // TODO pages übergeben
             };
 
             jQuery.post(ajaxurl, data, function(response) {
@@ -346,7 +351,7 @@ function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
 			jQuery("#jcs_cucj_admin_menu_view_sockel").html(content);
 		}
 
-		function jcs_cucj_menu_get_view(viewName, localId = null, parentId = null){
+		function jcs_cucj_menu_get_view(viewName, localId = null, parentId = null) {
 			var data = {
 				'action': 'cs_cucj_admin_menu_render_view',
                 'viewName': viewName,
@@ -739,7 +744,9 @@ function cs_cucj_css_files_list_files_render_view() {
                                         jcs_cucj_echo_button(
                                             'delete',
                                             'button',
-                                            "jcs_cucj_delete_css_file(".$row->id.");jcs_cucj_menu_get_view('css_files_edit_file', ".$row->id.");",
+                                            "jcs_cucj_delete_css_file(".$row->id.");jcs_cucj_menu_get_view('css_files_list_files');",
+                                            // TODO loeschen falls Bug behoben
+                                            //"jcs_cucj_delete_css_file(".$row->id.");jcs_cucj_menu_get_view('css_files_edit_file', ".$row->id.");",
                                             '',
                                             false,
                                             false,
@@ -829,13 +836,13 @@ function cs_cucj_css_files_new_file_render_view() {
                                     <label>
                                         All pages
                                     </label>
-                                    <input type="text" id="jcs_cucj_pages_rel_page_all" name="jcs_cucj_pages_rel_page_all" value="on">
+                                    <input type="text" id="jcs_cucj_pages_rel_page_all" name="jcs_cucj_pages_rel_page_all" value="1">
                                     <?php
                                         $tmp_all_pages = get_pages();
                                         foreach ($tmp_all_pages as $page) {
                                             ?>
                                             <label>
-                                                <input type="checkbox" name="jcs_cucj_pages_rel_page_<?= $page->ID; ?>" value="on">
+                                                <input type="checkbox" name="jcs_cucj_pages_rel_page[]" value="<?= $page->ID; ?>">
                                                 <?= $page->post_title;?>
                                             </label>
                                             <?php
