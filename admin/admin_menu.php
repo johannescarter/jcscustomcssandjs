@@ -267,12 +267,31 @@ function jcs_cucj_admin_menu_css_files_render_view_js() { ?>
         function jcs_cucj_update_css_file_and_close(localId) {
             var formData = jQuery('form').serializeArray();
 
+            var pages = [];
+            var allPages = '0';
+
+            formData.forEach((item, i) => {
+                if(item != null
+                   && item.name != null
+                   && item.value != null
+                ) {
+                    if(item.name == 'jcs_cucj_pages_rel_page') {
+                        pages.push(item.value);
+                    } else if (item.name == 'jcs_cucj_pages_rel_page_all'
+                               && item.value == '1') {
+                        allPages = '1';
+                    }
+                }
+            });
+
             var data = {
                 'action': 'jcs_cucj_update_css_file',
                 'name': formData[0].value,
                 'description': formData[1].value,
                 'media_query': formData[2].value,
-                'id' : localId
+                'id' : localId,
+                'jcs_cucj_pages_rel_page_all': allPages,
+                'jcs_cucj_pages_rel_page[]': pages,
             };
 
             jQuery.post(ajaxurl, data, function(response) {
