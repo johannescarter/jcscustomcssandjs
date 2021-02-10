@@ -578,7 +578,6 @@ function jcs_cucj_update_css_file() {
         if( isset( $_POST[ 'jcs_cucj_pages_rel_page_all' ] ) || isset( $_POST[ 'jcs_cucj_pages_rel_page' ] ) ) {
             $file_id = $_POST[ 'id' ];
 
-            // TODO alle einträge aus pages file rel mit file id
             $query = "SELECT * FROM " . $wpdb->prefix . "jcs_cucj_files_pages_rel WHERE file_id = " . $file_id . " AND file_type LIKE 'css';";
             $pages_db = $wpdb->get_results( $query );
 
@@ -593,8 +592,7 @@ function jcs_cucj_update_css_file() {
                               'css'
                           );";
                 $wpdb->get_results( $query );
-                // DELETE FROM table_name WHERE condition;
-                // TODO loesche alle einträge mit file_id = $file_id aus db ausser wo page_id = -1
+                // loesche alle einträge mit file_id = $file_id aus db ausser wo page_id = -1
                 $query = "DELETE FROM " . $wpdb->prefix . "jcs_cucj_files_pages_rel WHERE (NOT page_id = -1) AND file_id = " . $file_id . " AND file_type LIKE 'css';";
                 $wpdb->get_results( $query );
             } else {
@@ -615,11 +613,8 @@ function jcs_cucj_update_css_file() {
                               );";
                     $wpdb->get_results( $query );
                 }
-                // TODO alle nicht ausgewählten, aber in der DB gespeicherten relationen loeschen
             }
         }
-
-        // TODO pages file rel
     }
 
     wp_die(); // this is required to terminate immediately and return a proper response
@@ -668,7 +663,6 @@ function jcs_cucj_create_css_entry() {
                       '" . esc_sql( $_POST[ 'custom_code' ] ) . "'
                   );";
         $wpdb->get_results( $query );
-        // TODO update pages file rel
     }
 
     wp_die(); // this is required to terminate immediately and return a proper response
@@ -986,6 +980,7 @@ function cs_cucj_css_files_edit_file_render_view( $id ) {
                                         foreach ($tmp_all_pages as $page) {
                                             ?>
                                             <label>
+                                                <? // TODO checked if allready in db ?>
                                                 <input type="checkbox" name="jcs_cucj_pages_rel_page" value="<?= $page->ID; ?>">
                                                 <?= $page->post_title;?>
                                             </label>
